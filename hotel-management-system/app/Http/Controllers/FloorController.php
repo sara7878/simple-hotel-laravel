@@ -2,84 +2,108 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\floor;
-use Illuminate\Http\Request;
 
-class FloorController extends Controller
+use App\Models\floor;
+use App\Models\manager;
+
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+
+class floorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
-        //
+         
+        $floors = floor::get(); 
+       
+      
+        return view('dashboard.floor.index',['floors'=>$floors]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
-        //
+        $floors =floor::get();
+        $manager = manager::all();
+        
+        return view('dashboard.floor.create',compact('floors', 'manager'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
-        //
+    
+        $request->validate([
+         
+            'name' =>'required|string|min:3|max:50',
+          
+            'manager_id' =>'required|max:50',
+            'number' =>'required',
+        ]);
+
+
+       
+        floor::create([
+        'name'=>$request->name ,
+        'number'=>$request->number ,
+        'manager_id'=>$request->manager_id,
+      
+]);
+return redirect()->route('dashboard.floor.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\floor  $floor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(floor $floor)
+    public function destroy($id)
     {
-        //
+        $floor = floor::find($id);
+        if($floor)
+        {
+            $floor -> delete();
+        }
+
+        return redirect()->route('dashboard.floor.index');
+    }
+   
+    public function show($id)
+    {
+        $floor=floor::findOrFail($id);
+        return view('dashboard.floor.show',compact('floor'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\floor  $floor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(floor $floor)
+    public function edit($id)
     {
-        //
+         
+        $floor=floor::find($id);
+        $manager = manager::all();
+       
+
+        return view('dashboard.floor.edit',compact('floor','manager'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\floor  $floor
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, floor $floor)
+
+    public function update(Request $request, $id)
     {
-        //
+ 
+        $request->validate([
+         
+            'name' =>'required|string|min:3|max:50',
+            'manager_id' =>'required|max:50',
+            'number' =>'required',
+        ]);
+        $floor=floor::find($id);
+      
+        $floor->update([
+            'name'=>$request->name ,
+
+            'number'=>$request->number,
+            'manager_id'=>$request->manager_id,
+        ]);
+
+        return redirect(route('dashboard.floor.index',$id));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\floor  $floor
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(floor $floor)
-    {
-        //
-    }
+  
+  
 }

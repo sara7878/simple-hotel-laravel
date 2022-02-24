@@ -78,21 +78,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Managers
+               Floors
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="/dashboard/floors/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
+                  <p>List Floors</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="/dashboard/floors/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
+                  <p>Add Floor</p>
                 </a>
               </li>
               
@@ -102,21 +102,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Managers
+               Receptionists
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="/dashboard/receptionists/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
+                  <p>List Receptionists</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="/dashboard/receptionists/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
+                  <p>Add Receptionists</p>
                 </a>
               </li>
               
