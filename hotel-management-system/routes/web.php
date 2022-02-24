@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+//
+// Route::get('/dashboard/managers', function () {
+//     return view('dashboard.manager.index');
+// });
+// Route::get('/dashboard/managers/create', function () {
+//     return view('dashboard.manager.create');
+// });
+
+Route::get('/', function () {
+        return view('dashboard.layout.master');
+    });
+
+
 //crad manageregory
 
 //index managere
