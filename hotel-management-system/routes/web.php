@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/dashboard', function () {
+    return view('dashboard.layout.master');
+});
+Route::get('/dashboard/managers', function () {
+    return view('dashboard.manager.index');
+});
+Route::get('/dashboard/managers/create', function () {
+    return view('dashboard.manager.create');
+});
+
