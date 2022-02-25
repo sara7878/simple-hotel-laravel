@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReservationRequest;
 use App\Models\reservation;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = reservation::all();
+        return view('dashboard.reservation.index', ['reservations' => $reservations]);        
     }
 
     /**
@@ -24,7 +26,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.reservation.create');
     }
 
     /**
@@ -33,9 +35,19 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreReservationRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $reservation = new reservation();
+        $reservation->accompany_number = $request->accompany_number;
+        $reservation->paid_price = $request->paid_price;
+        $reservation->room_number = $request->room_number;
+        $reservation->client_id = $request->client_id;
+        $reservation->receptionist_id = $request->receptionist_id;
+
+        $reservation->save();
+        
+        return redirect()->route('reservation.index');
     }
 
     /**
@@ -44,9 +56,10 @@ class ReservationController extends Controller
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show(reservation $reservation)
+    public function show($id)
     {
-        //
+        $reservation = reservation::find($id);
+        return view('dashboard.reservation.show', ['reservation' => $reservation]);
     }
 
     /**
@@ -55,9 +68,10 @@ class ReservationController extends Controller
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function edit(reservation $reservation)
+    public function edit($id)
     {
-        //
+        $reservation = reservation::find($id);
+        return view('dashboard.reservation.edit',['id'=>$id, 'reservation'=>$reservation]);
     }
 
     /**
@@ -67,9 +81,19 @@ class ReservationController extends Controller
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, reservation $reservation)
+    public function update(StoreReservationRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        
+        $reservation = reservation::find($id);
+        $reservation->accompany_number = $request->accompany_number;
+        // $reservation->paid_price = $request->paid_price;
+        $reservation->room_number = $request->room_number;
+        // $reservation->client_id = $request->client_id;
+        // $reservation->receptionist_id = $request->receptionist_id;
+
+        $reservation->save();
+        return redirect()->route('reservation.index');
     }
 
     /**
@@ -78,8 +102,11 @@ class ReservationController extends Controller
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(reservation $reservation)
+    public function destroy($id)
     {
-        //
+        $reservation = reservation::find($id);
+        if($reservation)
+            $reservation->delete();
+        return redirect()->route('reservation.index');
     }
 }

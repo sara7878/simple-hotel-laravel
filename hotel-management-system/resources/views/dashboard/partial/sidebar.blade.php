@@ -54,21 +54,45 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Managers
+                Clients
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="/dashboard/clients" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
+                  <p>List Clients</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="{{route('client.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
+                  <p>Add Client --- not right</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Reservations
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/dashboard/reservations" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Reservations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('reservation.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Reservation</p>
                 </a>
               </li>
               
