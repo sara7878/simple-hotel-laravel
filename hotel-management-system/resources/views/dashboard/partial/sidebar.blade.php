@@ -136,16 +136,22 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/dashboard/receptionists/approve" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>clients to approve</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="/dashboard/receptionists/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>List Receptionists</p>
+                  <p>approved clients</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/dashboard/receptionists/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Receptionists</p>
+                  <p>My clients reservations</p>
                 </a>
               </li>
 

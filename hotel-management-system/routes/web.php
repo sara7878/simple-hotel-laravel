@@ -76,43 +76,6 @@ Route::prefix('receptionist')->group(function(){
 
 
 
-    // Route::get('/recptionist/home', function () {
-    //     return view('dashboard.layout.master');
-    // })->middleware(['auth'])->name('dashboard');
-    
-
-
-
-
-
-
-
-
-
-
-// Route::get('admin/dashboard', function () {
-//     return view('backend.dashboard');
-// })->middleware(['auth:admin'])->name('admin.dashboard');
-
-// Route::get('/admin-register', [RegisteredUserController::class, 'create'])
-//     ->middleware('guest:admin')
-//     ->name('admin.register');
-
-// Route::post('/admin-register', [RegisteredUserController::class, 'store'])
-//     ->middleware('guest:admin');
-
-// Route::get('/admin-login', [AuthenticatedSessionController::class, 'create'])
-//     ->middleware('guest:admin')
-//     ->name('admin.login');
-
-// Route::post('/admin-login', [AuthenticatedSessionController::class, 'store'])
-//     ->middleware('guest:admin');
-// Route::post('/admin-logout', [AuthenticatedSessionController::class, 'destroy'])
-//     ->name('admin.logout')
-//     ->middleware('auth:admin');
-
-
-
 //index managere
 Route::get('/manager', [ManagerController::class, 'index'])->middleware(['auth'])->name('manager.index');
 //show managere
@@ -162,6 +125,12 @@ Route::delete('/delete/{id}', [ReceptionistController::class, 'destroy'])->name(
 Route::get('/editrecp/{id}', [ReceptionistController::class, 'edit'])->name('dashboard.receptionist.edit');
 Route::post('/saveEditrecp/{id}', [ReceptionistController::class, 'update'])->name('dashboard.receptionist.update');
 Route::get('/show/{id}', [ReceptionistController::class, 'show'])->name('dashboard.receptionist.show');
+
+
+
+Route::get('/dashboard/receptionists/approve',[ReceptionistController::class, 'index'])->middleware(['receptionist'])->name('dashboard.receptionist.approve');
+
+
 
 
 
