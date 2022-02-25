@@ -132,6 +132,17 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <x-dropdown-link :href="route('logout')"
+                onclick="event.preventDefault();
+                            this.closest('form').submit();">
+            {{ __('Log Out') }}
+        </x-dropdown-link>
+    </form>
+
+
     </ul>
   </nav>
   <!-- /.navbar -->

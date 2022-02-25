@@ -18,112 +18,93 @@
         </div>
       </div>
 
-      
+
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Managers
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
+
+               <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Admins
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('admin.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List Admin</p>
+                    </a>
+                    <li class="nav-item">
+                      <a href="{{ route('admin.create') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add Admin</p>
+                      </a>
+                    </li>
+    
+                  </ul>
+              </li>
+        
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Managers
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('manager.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List Managers</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+
+                    <a href="{{ route('manager.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add Manager</p>
+                    </a>
+                  </li>
+
+                </ul>
               </li>
               <li class="nav-item">
-                <a  class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Rooms
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+
+                    <a href="{{ route('room.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List Rooms</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('room.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add Room</p>
+                    </a>
+                  </li>
+
+                </ul>
               </li>
-              
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Rooms
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('room.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Rooms</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('room.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Room</p>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Managers
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Managers
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
-          
-          
+
+
+
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

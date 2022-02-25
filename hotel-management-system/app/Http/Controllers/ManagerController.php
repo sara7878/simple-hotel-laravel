@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Hash;
 class ManagerController extends Controller
 {
 
+    // public function loginManager()
+    // {
+    //      return view('auth.loginManager');
+    // }
+
+
+    // public function auth(Request $request)
+    // {
+    //     if (manager::attempt(['email' => $request->email, 'password' => $request->password])) {
+    //         // Authentication passed...
+    //         return redirect()->route('dashboard.layout.master');
+    //     }
+    // }
+
     public function index()
     {
         $managers=manager::get();
@@ -106,4 +120,9 @@ class ManagerController extends Controller
         $manager->delete();
         return redirect(route('manager.index'));
     }
+
+
+
+
+
 }
