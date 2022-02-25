@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ManagerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -9,24 +10,13 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register web routes for your applimanagerion. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/dashboard', function () {
-    return view('dashboard.layout.master');
-});
-Route::get('/dashboard/managers', function () {
-    return view('dashboard.manager.index');
-});
-Route::get('/dashboard/managers/create', function () {
-    return view('dashboard.manager.create');
-});
+//crad manageregory
 
 Route::get('/dashboard/clients', [ClientController::class,'index'])->name('client.index');
 Route::post('/dashboard/clients/store', [ClientController::class,'store'])->name('client.store');
@@ -48,3 +38,16 @@ Route::delete('/dashboard/reservations/delete/{id}',[ReservationController::clas
 Route::get('/dashboard/reservations/{id}', [ReservationController::class,'show'])->name('reservation.show');
 
 
+//index managere
+Route::get('/manager', [ManagerController::class, 'index'])->name('manager.index');
+//show managere
+// Route::get('manager/{id}',[ManagerController::class, 'show'])->name('manager.show');
+//crete
+Route::get('manager/create',[ManagerController::class, 'create'])->name('manager.create');
+Route::post('manager/store',[ManagerController::class, 'store'])->name('manager.store');
+//update
+Route::get('manager/edit/{id}',[ManagerController::class, 'edit'])->name('manager.edit');
+Route::post('manager/update/{id}',[ManagerController::class, 'update'])->name('manager.update');
+
+//Delete
+Route::delete('manager/delete/{id}',[ManagerController::class, 'destroy'])->name('manager.delete');
