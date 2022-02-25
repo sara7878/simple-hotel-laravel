@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="{{asset('custom-dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('custom-dashboard/dist/css/adminlte.min.css')}}">
-@endsection
+ <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">  -->
+  @endsection
 
 @section('content')
 <!-- Content Header (Page header) -->
@@ -127,9 +128,15 @@
 <script src="{{asset('custom-dashboard/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('custom-dashboard/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('custom-dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js')}}')}}"></script>
-
+<scrpit src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 <!-- Page specific script -->
+<!-- <script>
+  $(document).ready( function () {
+    $('#example2').DataTable();
+} );
+</script> -->
 <script>
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -138,7 +145,7 @@
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
-      "searching": false,
+      "searching": true,
       "ordering": true,
       "info": true,
       "autoWidth": false,
