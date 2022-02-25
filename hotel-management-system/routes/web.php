@@ -49,7 +49,7 @@ Route::get('/dashboard/floors/',[FloorController::class, 'index'])->name('dashbo
 
 Route::get('/dashboard/floors/create',[FloorController::class, 'create']);
 Route::post('/dashboard/floors/store',[FloorController::class, 'store'])->name('dashboard.floor.store');
-//Route::delete('/delete/{id}',[FloorController::class, 'destroy'])->name('floor.delete');
+Route::delete('/destroy/{id}',[FloorController::class, 'destroy'])->name('floor.delete');
 Route::get('/edit/{id}',[FloorController::class, 'edit'])->name('dashboard.floor.edit');
 Route::post('/saveEdit/{id}',[FloorController::class, 'update'])->name('dashboard.floor.update');
 Route::get('/show/{id}',[FloorController::class, 'show'])->name('dashboard.floor.show');
