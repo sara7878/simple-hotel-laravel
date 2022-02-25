@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('admin')->group(function(){
-    
+
 //get form
 Route::get('/login',[AdminController::class,'loginForm'])->name('login.form');
 //check
@@ -43,11 +43,15 @@ Route::post('/login/owner', [AdminController::class, 'Login'])->name('admin.logi
 // Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('admin.dashboard');
 
 
+
 });
+
+Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('admin');
+
 
 Route::get('/home', function () {
     return view('dashboard.layout.master');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['admin'])->name('dashboard');
 
 
 // Route::get('admin/dashboard', function () {

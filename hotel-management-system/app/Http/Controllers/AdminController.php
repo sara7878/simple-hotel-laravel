@@ -119,4 +119,15 @@ class AdminController extends Controller
         $admin->delete();
         return redirect(route('admin.index'));
     }
+
+
+
+
+    public function logout(){
+        Auth::guard('admin')->logout();
+        return redirect()->route('login.form')->with('error', 'Admin Logout
+            Successfully');
+     } 
+
+
 }
