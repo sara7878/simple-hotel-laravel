@@ -77,7 +77,7 @@
 
 
                                 <div class="form-group">
-                                    <label for="exampleInputName3">Price :</label>
+                                    <label for="exampleInputName3">Price in cent:</label>
                                     <input type="number" name="price" class="form-control" id="exampleInputName3"
                                         class="@error('price') is-invalid @enderror" placeholder="Enter price of room">
                                         @error('price')

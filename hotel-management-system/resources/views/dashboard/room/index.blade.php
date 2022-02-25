@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{asset('custom-dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('custom-dashboard/dist/css/adminlte.min.css')}}">
+  {{-- <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">  --}}
 @endsection
 
 @section('content')
@@ -69,8 +70,14 @@
                     <td>{{ $room->name }}</td>
                     <td>{{ $room->number}}</td>
                     <td>{{ $room->capacity }}</td>
-                    <td>{{ $room->price }}</td>
-                    <td>{{ $room->status }}</td>
+                    <td>{{ ($room->price)/100 }} $</td>
+                    <td> 
+                      @if($room->status==0)
+                        Empty
+                      @else
+                        Not empty
+                      @endif
+                  </td>
                     <td>{{ $room->manager->name??"not found" }}</td>
                     <td>{{ $room->floor->name??"not found" }}</td>
 
@@ -135,7 +142,7 @@
 <script src="{{asset('custom-dashboard/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{asset('custom-dashboard/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{asset('custom-dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js')}}')}}"></script>
-
+{{-- <scrpit src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script> --}}
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -146,7 +153,7 @@
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
-      "searching": false,
+      "searching": true,
       "ordering": true,
       "info": true,
       "autoWidth": false,
@@ -154,7 +161,11 @@
     });
   });
 </script>
-
+{{-- <script>
+  $(document).ready( function () {
+    $('#example2').DataTable();
+} );
+</script> --}}
 
 
 @endsection

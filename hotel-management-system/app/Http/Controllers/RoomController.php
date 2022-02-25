@@ -20,6 +20,11 @@ class RoomController extends Controller
         return view('dashboard.room.index',['rooms' => $rooms]);
     }
 
+    public function indexAdmin()
+    {
+        $rooms=room::with('floor')->get();
+        return view('dashboard.room.index',['rooms' => $rooms]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -43,6 +48,9 @@ class RoomController extends Controller
         //validation
         $request->validate([
             'name' =>'required|string|min:3|max:50',
+            'number'=>'unique:rooms|numeric|min:1000',
+            'capacity'=>'numeric',
+            'price'=>'required|numeric'
         ]);
 
         room::create([
@@ -96,12 +104,16 @@ class RoomController extends Controller
                 //validation
                 $request->validate([
                     'name' =>'required|string|min:3|max:50',
+                    'number'=>'unique:rooms|numeric|min:1000',
+                    'capacity'=>'numeric',
+                    'price'=>'required|numeric'
+
                 ]);
                 //$request->validated();
                 $room=room::findOrFail($id);
                 $room->update([
                     'name'=>$request->name ,
-                    'number'=>$request->number ,
+                    // 'number'=>$request->number ,
                     'capacity'=>$request->capacity ,
                     'price'=>$request->price ,
                     'status'=>$request->status,
@@ -128,7 +140,8 @@ class RoomController extends Controller
     public function destroy($id)
     {
         $room=room::findOrFail($id);
-        $room->delete();
-        return redirect(route('room.index'));
-    }
+        if( $room->status==0){
+            $room->delete();
+            return redirect(route('room.index'));
+    }}
 }

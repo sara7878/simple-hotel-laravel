@@ -42,7 +42,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a  class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Manager</p>
                 </a>
@@ -60,13 +60,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{ route('room.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Rooms</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="{{ route('room.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Room</p>
                 </a>
