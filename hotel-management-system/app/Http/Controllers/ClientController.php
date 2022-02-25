@@ -18,7 +18,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = client::all();
+        $clients = client::with('client')->all();
         return view('dashboard.client.index', ['clients' => $clients]);
     }
 

@@ -52,6 +52,7 @@
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
+                                    <th>Client Id</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -61,12 +62,16 @@
                                     <td>{{$reservation->accompany_number}}</td>
                                     <td>{{$reservation->paid_price}}</td>
                                     <td>{{$reservation->room_number}}</td>
+                                    <td>{{$reservation->client->name}}</td>
                                     <td>
-                                        
+                                        <form method="post" action="{{ route('reservation.edit',['id' => $reservation->id])}}" class="d-inline">
+                                            @csrf
+                                            <button class="btn btn-none"><i class="fas fa-edit text-primary"></i></button>
+                                        </form>
                                         <form method="post" action="{{ route('reservation.delete',['id' => $reservation->id])}}" class="d-inline">
                                             @csrf
                                             @method('delete')
-                                            <button class="btn btn-none">Cancel Reservation<i class="fas fa-trash-alt text-danger"></i></button>
+                                            <button class="btn btn-none"><i class="fas fa-trash-alt text-danger"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -77,6 +82,7 @@
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
+                                    <th>Client Id</th>
                                     <th>Actions</th>
                                 </tr>
                             </tfoot>
