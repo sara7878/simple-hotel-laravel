@@ -5,12 +5,29 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClientRequest;
 use App\Models\client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Rinvex\Country\CountryLoader;
 
 class ClientController extends Controller
 {
+
+    public function loginForm()
+    {
+        return view('clientLogin.login');
+    }
+
+    public function Login(Request $request)
+    {
+        $check = $request->all();
+        if (Auth::guard('client')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
+            return redirect('/dashboard/clients')->with('error', 'client login sucess');
+        } else {
+            return back()->with('error', 'invalid email ');;
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

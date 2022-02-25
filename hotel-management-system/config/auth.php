@@ -45,6 +45,10 @@ return [
          'admin'=>[
             'driver'=>'session',
             'provider'=>'admins'
+         ],
+         'client'=>[
+            'driver'=>'session',
+            'provider'=>'clients'
             ]
         // 'admin-api' => [
         //     'driver' => 'token',
@@ -86,6 +90,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\admin::class,
+        ],
+        'clients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\client::class,
         ],
 
 

@@ -28,6 +28,16 @@ class ReservationController extends Controller
         $reservations = reservation::with('client')->get();
         return view('dashboard.reservation.clientReservations', ['reservations' => $reservations]);        
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAllforAdmin()
+    {
+        $reservations = reservation::with(['client','receptionist'])->get();
+        return view('dashboard.reservation.showforAdmin', ['reservations' => $reservations]);        
+    }
 
     /**
      * Show the form for creating a new resource.

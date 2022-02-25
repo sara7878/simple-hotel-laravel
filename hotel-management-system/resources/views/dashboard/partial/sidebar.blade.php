@@ -101,6 +101,7 @@
               
             </ul>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -126,6 +127,12 @@
                 <a href="{{route('reservation.clientReservations')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Client Reservations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('reservation.showReservations')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Reservations for Admin</p>
                 </a>
               </li>
 

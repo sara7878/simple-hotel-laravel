@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::prefix('admin')->group(function(){
+// Route::prefix('admin')->group(function(){
 
 //get form
 Route::get('/login',[AdminController::class,'loginForm'])->name('login.form');
@@ -46,7 +46,9 @@ Route::post('/login/owner', [AdminController::class, 'Login'])->name('admin.logi
 
 
 
-});
+// });
+
+
 
 Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('admin');
 
@@ -55,6 +57,18 @@ Route::get('/home', function () {
     return view('dashboard.layout.master');
 })->middleware(['admin'])->name('dashboard');
 
+
+Route::prefix('client')->group(function(){
+
+    //get form
+    Route::get('/login',[ClientController::class,'loginForm'])->name('login.form');
+    //check
+    Route::post('/login/owner', [ClientController::class, 'Login'])->name('client.login');
+    // Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('admin.dashboard');
+    
+    
+    
+    });
 
 // Route::get('admin/dashboard', function () {
 //     return view('backend.dashboard');
@@ -79,16 +93,17 @@ Route::get('/home', function () {
 
 
 
-Route::get('/dashboard/clients', [ClientController::class,'index'])->name('client.index');
-Route::post('/dashboard/clients/store', [ClientController::class,'store'])->name('client.store');
-Route::get('/dashboard/clients/create', [ClientController::class,'create'])->name('client.create');
-Route::post('/dashboard/clients/edit/{id}',[ClientController::class, 'edit'])->name('client.edit');
-Route::get('/dashboard/clients/update/{id}',[ClientController::class, 'update'])->name('client.update');
-Route::delete('/dashboard/clients/delete/{id}',[ClientController::class, 'destroy'])->name('client.delete');
-Route::get('/dashboard/clients/{id}', [ClientController::class,'show'])->name('client.show');
+Route::get('/dashboard/clients', [ClientController::class,'index'])->middleware(['client'])->name('client.index');
+Route::post('/dashboard/clients/store', [ClientController::class,'store'])->middleware(['client'])->name('client.store');
+Route::get('/dashboard/clients/create', [ClientController::class,'create'])->middleware(['client'])->name('client.create');
+Route::post('/dashboard/clients/edit/{id}',[ClientController::class, 'edit'])->middleware(['client'])->name('client.edit');
+Route::get('/dashboard/clients/update/{id}',[ClientController::class, 'update'])->middleware(['client'])->name('client.update');
+Route::delete('/dashboard/clients/delete/{id}',[ClientController::class, 'destroy'])->middleware(['client'])->name('client.delete');
+Route::get('/dashboard/clients/{id}', [ClientController::class,'show'])->middleware(['client'])->name('client.show');
 
 Route::get('/dashboard/reservations', [ReservationController::class,'index'])->name('reservation.index');
 Route::get('/dashboard/client-reservations', [ReservationController::class,'showAll'])->name('reservation.clientReservations');
+Route::get('/dashboard/show-reservations', [ReservationController::class,'showAllforAdmin'])->name('reservation.showReservations');
 
 Route::post('/dashboard/reservations/store', [ReservationController::class,'store'])->name('reservation.store');
 //////needs modification
@@ -101,11 +116,11 @@ Route::delete('/dashboard/reservations/delete/{id}',[ReservationController::clas
 Route::get('/dashboard/reservations/{id}', [ReservationController::class,'show'])->name('reservation.show');
 
 
-//index managere
+// index managere
 Route::get('/manager', [ManagerController::class, 'index'])->middleware(['auth'])->name('manager.index');
-//show managere
-// Route::get('manager/{id}',[ManagerController::class, 'show'])->name('manager.show');
-//crete
+// show managere
+Route::get('manager/{id}',[ManagerController::class, 'show'])->name('manager.show');
+// crete
 Route::get('manager/create',[ManagerController::class, 'create'])->middleware(['auth'])->name('manager.create');
 Route::post('manager/store',[ManagerController::class, 'store'])->middleware(['auth'])->name('manager.store');
 //update
