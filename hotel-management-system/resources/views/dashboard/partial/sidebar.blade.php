@@ -95,6 +95,12 @@
                   <p>Add Reservation</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('reservation.clientReservations')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Client Reservations</p>
+                </a>
+              </li>
               
             </ul>
           </li>

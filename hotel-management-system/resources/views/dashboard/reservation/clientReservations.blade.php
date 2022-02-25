@@ -52,7 +52,7 @@
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
-                                    <th>Client Id</th>
+                                    <th>Client Name</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -62,7 +62,7 @@
                                     <td>{{$reservation->accompany_number}}</td>
                                     <td>{{$reservation->paid_price}}</td>
                                     <td>{{$reservation->room_number}}</td>
-                                    <td>{{$reservation->client->name}}</td>
+                                    
                                     <td>
                                         <form method="post" action="{{ route('reservation.edit',['id' => $reservation->id])}}" class="d-inline">
                                             @csrf
@@ -82,7 +82,7 @@
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
-                                    <th>Client Id</th>
+                                    <th>Client Name</th>
                                     <th>Actions</th>
                                 </tr>
                             </tfoot>

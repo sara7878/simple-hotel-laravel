@@ -18,7 +18,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = client::with('client')->all();
+        $clients = client::all();
         return view('dashboard.client.index', ['clients' => $clients]);
     }
 
@@ -76,6 +76,7 @@ class ClientController extends Controller
         $img->move(public_path("uploads/clients/"), $image);
 
         $client->avatar_img = $image;
+        // dd($request);
 
         $client->save();
 
@@ -125,16 +126,23 @@ class ClientController extends Controller
         // $client->country = $request->country;
         // $client->gender = $request->gender;
 
-        $name = $client->avatar_img;
-        if ($request->hasFile('avatar_img')) {
-            $img = $request->file('avatar_img');
-            $ext = $img->getClientOriginalExtension();
-            $name = "client-" . uniqid() . ".$ext";
-            $img->move(public_path("uploads/clients/"), $name);
+        $name=$client->img;
+        if ($request->hasFile('img'))
+        {
+            if($name !== null)
+            {
+                unlink(public_path('uploads/clients/'.$name));
+            }
+            //move
+        $img=$request->file('img');             //bmsek el soura
+        $ext=$img->getClientOriginalExtension();   //bgeb extention
+        $name="client-".uniqid().".$ext";            // conncat ext +name elgded
+        $img->move(public_path("uploads/clients"),$name);   //elmkan , $name elgded
+
         }
 
         $client->avatar_img = $name;
-
+        
         $client->save();
         return redirect()->route('client.index');
     }

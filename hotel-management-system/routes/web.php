@@ -27,10 +27,12 @@ Route::delete('/dashboard/clients/delete/{id}',[ClientController::class, 'destro
 Route::get('/dashboard/clients/{id}', [ClientController::class,'show'])->name('client.show');
 
 Route::get('/dashboard/reservations', [ReservationController::class,'index'])->name('reservation.index');
+Route::get('/dashboard/client-reservations', [ReservationController::class,'showAll'])->name('reservation.clientReservations');
+
 Route::post('/dashboard/reservations/store', [ReservationController::class,'store'])->name('reservation.store');
 //////needs modification
 //////url should be : /reservations/rooms/{roomId}
-Route::get('/dashboard/reservations/rooms/{roomId}', [ReservationController::class,'create'])->name('reservation.create');
+// Route::get('/dashboard/reservations/rooms/{roomId}', [ReservationController::class,'create'])->name('reservation.create');
 Route::get('/dashboard/reservations/create', [ReservationController::class,'create'])->name('reservation.create');
 Route::post('/dashboard/reservations/edit/{id}',[ReservationController::class, 'edit'])->name('reservation.edit');
 Route::post('/dashboard/reservations/update/{id}',[ReservationController::class, 'update'])->name('reservation.update');

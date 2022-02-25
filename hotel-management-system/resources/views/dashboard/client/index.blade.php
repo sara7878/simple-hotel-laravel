@@ -55,6 +55,7 @@
                                     <th>Mobile</th>
                                     <th>Gender</th>
                                     <th>Country</th>
+                                    <th>Image</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -68,6 +69,7 @@
                                     <td>{{$client->mobile}}</td>
                                     <td>{{$client->gender}}</td>
                                     <td>{{$client->country}}</td>
+                                    <td><img src='{{ asset("uploads/clients/$client->avatar_img") }}' width="50" height="50" alt=""></td>
                                     <td>{{$client->status}}</td>
                                     <td>
                                         <a href="{{route('client.show',['id'=> $client->id])}}"><i class="fas fa-eye text-success mx-2"></i></a>
@@ -93,6 +95,7 @@
                                     <th>Mobile</th>
                                     <th>Gender</th>
                                     <th>Country</th>
+                                    <th>Image</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
