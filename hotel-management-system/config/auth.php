@@ -42,7 +42,7 @@ return [
         ],
 
          //Admin guards
-         'admins-web'=>[
+         'admin'=>[
             'driver'=>'session',
             'provider'=>'admins'
             ]
@@ -114,11 +114,12 @@ return [
             'throttle' => 60,
         ],
 
-        'admins' => [
-            'provider' => 'admins',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+        // 'admins' => [
+        //     'provider' => 'admins',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        
+        // ],
 
     ],
 

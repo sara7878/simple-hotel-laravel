@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 
 class admin extends Authenticatable
 {
-    use HasFactory ,Notifiable;
+    use HasFactory , HasFactory,Notifiable;
 
 
     protected $table = 'admins';
