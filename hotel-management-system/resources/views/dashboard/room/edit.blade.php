@@ -50,7 +50,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputName">Name : </label>
                                     <input type="name" name="name" class="form-control" id="exampleInputName"
-                                        class="@error('name') is-invalid @enderror" placeholder="Enter name" value="{{ old('name') ?? $room ->name}}">
+                                        class="@error('name') is-invalid @enderror" placeholder="Enter name" value="{{$room ->name}}">
                                     @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputName1">Number :</label>
                                     <input type="number" name="number" class="form-control" id="exampleInputName1"
-                                        class="@error('number') is-invalid @enderror" placeholder="Enter Number of room" value="{{ old('number') ?? $room ->number}}">
+                                        class="@error('number') is-invalid @enderror" placeholder="Enter Number of room" value="{{$room ->number}}">
                                         @error('number')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -69,7 +69,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputName2">Capacity :</label>
                                     <input type="number" name="capacity" class="form-control" id="exampleInputName2"
-                                        class="@error('capacity') is-invalid @enderror" placeholder="Enter capacity of room" value="{{ old('capacity') ?? $room ->capacity}}">
+                                        class="@error('capacity') is-invalid @enderror" placeholder="Enter capacity of room" value="{{$room ->capacity}}">
                                         @error('capacity')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -79,19 +79,30 @@
                                 <div class="form-group">
                                     <label for="exampleInputName3">Price :</label>
                                     <input type="number" name="price" class="form-control" id="exampleInputName3"
-                                        class="@error('price') is-invalid @enderror" placeholder="Enter price of room" value="{{ old('price') ?? $room ->price}}">
+                                        class="@error('price') is-invalid @enderror" placeholder="Enter price of room" value="{{$room ->price}}">
                                         @error('price')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 </div>
 
 
+                                <div class="form-group">
+                                    <label for="exampleInputName6">Status :</label>
+                                    <select class="form-control" name="status" id="exampleInputName6" >
+                                        <option value="0" @if ($room->status == 0) selected @endif>Empty</option>
+                                        <option value="1" @if ($room->status == 1) selected @endif>Not Empty</option>
+                                    </select>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputName4">Manager Id :</label>
                                     <select class="form-control" name="manager" id="exampleInputName4" >
                                         @foreach($managers as $manager )
-                                        <option value="{{$manager->id}}"> {{ $manager->name??'not found' }}</option>
+                                        @if ($room->manager_id == $manager->id)
+                                            <option value="{{$manager->id}}" selected>{{ $manager->name??'not found' }}</option>
+                                        @else
+                                            <option value="{{$manager->id}}">{{ $manager->name??'not found' }}</option>
+                                        @endif
                                         @endforeach
                                         </select>
                                 </div>
@@ -100,7 +111,11 @@
                                     <label for="exampleInputName5">Floor Number :</label>
                                     <select class="form-control" name="floor" id="floor" id="exampleInputName5" >
                                         @foreach($floors as $floor )
-                                        <option value="{{$floor->id}}"> {{ $floor->number??'not found' }}</option>
+                                        @if ($room->floor_id == $floor->id)
+                                            <option value="{{$floor->id}}" selected>{{ $floor->number??'not found' }}</option>
+                                        @else
+                                            <option value="{{$floor->id}}">{{ $floor->number??'not found' }}</option>
+                                        @endif                                       
                                         @endforeach
                                         </select>
                                 </div>

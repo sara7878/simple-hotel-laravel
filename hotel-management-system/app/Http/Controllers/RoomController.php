@@ -104,11 +104,12 @@ class RoomController extends Controller
                     'number'=>$request->number ,
                     'capacity'=>$request->capacity ,
                     'price'=>$request->price ,
+                    'status'=>$request->status,
                     'manager_id'=>$request->manager ,
                     'floor_id'=>$request->floor ,
                 ]);
-        
-                return redirect(route('room.index',$id));
+                // var_dump($request->status);
+                return redirect(route('room.index'));
     }
 
 
