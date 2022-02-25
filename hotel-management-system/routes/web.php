@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -92,6 +93,9 @@ Route::prefix('client')->group(function(){
 //     ->middleware('auth:admin');
 
 
+//login
+// Route::get('manager/loginManager/',[ManagerController::class, 'loginManager'])->name('manager.login');
+// Route::post('manager/login/',[ManagerController::class, 'auth'])->name('auth.loginManager');
 
 Route::get('/dashboard/clients', [ClientController::class,'index'])->middleware(['client'])->name('client.index');
 Route::post('/dashboard/clients/store', [ClientController::class,'store'])->middleware(['client'])->name('client.store');
@@ -128,6 +132,15 @@ Route::get('manager/edit/{id}',[ManagerController::class, 'edit'])->middleware([
 Route::post('manager/update/{id}',[ManagerController::class, 'update'])->middleware(['auth'])->name('manager.update');
 
 //Delete
+Route::delete('manager/delete/{id}',[ManagerController::class, 'destroy'])->name('manager.delete');
+
+////////////////////////////////rooms
+Route::get('/room', [RoomController::class, 'index'])->name('room.index');
+Route::get('room/create',[RoomController::class, 'create'])->name('room.create');
+Route::post('room/store',[RoomController::class, 'store'])->name('room.store');
+Route::get('room/edit/{id}',[RoomController::class, 'edit'])->name('room.edit');
+Route::post('room/update/{id}',[RoomController::class, 'update'])->name('room.update');
+Route::delete('room/delete/{id}',[RoomController::class, 'destroy'])->name('room.delete');
 Route::delete('manager/delete/{id}',[ManagerController::class, 'destroy'])->middleware(['auth'])->name('manager.delete');
 
 
@@ -144,9 +157,6 @@ Route::get('admin/edit/{id}',[AdminController::class, 'edit'])->middleware(['aut
 Route::post('admin/update/{id}',[AdminController::class, 'update'])->middleware(['auth'])->name('admin.update');
 //Delete
 Route::delete('admin/delete/{id}',[AdminController::class, 'destroy'])->middleware(['auth'])->name('admin.delete');
-//login
-// Route::get('manager/loginManager/',[ManagerController::class, 'loginManager '])->name('manager.login');
-// Route::post('manager/login/',[ManagerController::class, 'auth '])->name('manager.auth');
 
 
 require __DIR__.'/auth.php';
