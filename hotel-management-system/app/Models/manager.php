@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class manager extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+        'email' , 'name' , 'password' ,'national_id', 'avatar_img',
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
+
+
 }
