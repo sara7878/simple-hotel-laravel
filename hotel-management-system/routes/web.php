@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,11 @@ Route::post('manager/update/{id}',[ManagerController::class, 'update'])->name('m
 
 //Delete
 Route::delete('manager/delete/{id}',[ManagerController::class, 'destroy'])->name('manager.delete');
+
+////////////////////////////////rooms
+Route::get('/room', [RoomController::class, 'index'])->name('room.index');
+Route::get('room/create',[RoomController::class, 'create'])->name('room.create');
+Route::post('room/store',[RoomController::class, 'store'])->name('room.store');
+Route::get('room/edit/{id}',[RoomController::class, 'edit'])->name('room.edit');
+Route::post('room/update/{id}',[RoomController::class, 'update'])->name('room.update');
+Route::delete('room/delete/{id}',[RoomController::class, 'destroy'])->name('room.delete');
