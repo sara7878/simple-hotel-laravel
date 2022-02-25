@@ -102,7 +102,7 @@
                           <select  class="form-control" class="@error('manager_id') is-invalid @enderror" aria-label="Default select example" id="manager_id" name="manager_id">
                             <option selected> select managaer</option>
                                 @foreach($manager  as $manager)
-                                <option value="{{$manager-> id}}" >{{ $rmanager -> name }}</option>
+                                <option value="{{$manager-> id}}" >{{ $manager -> name }}</option>
                                 @endforeach
                                
                                     </select>

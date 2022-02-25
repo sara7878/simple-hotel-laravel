@@ -46,7 +46,6 @@ Route::get('/show/{id}', [ReceptionistController::class, 'show'])->name('dashboa
 
 
 Route::get('/dashboard/floors/',[FloorController::class, 'index'])->name('dashboard.floor.index');
-
 Route::get('/dashboard/floors/create',[FloorController::class, 'create']);
 Route::post('/dashboard/floors/store',[FloorController::class, 'store'])->name('dashboard.floor.store');
 Route::delete('/destroy/{id}',[FloorController::class, 'destroy'])->name('floor.delete');

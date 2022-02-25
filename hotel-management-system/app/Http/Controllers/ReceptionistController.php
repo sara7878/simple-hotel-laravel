@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\receptionist;
+use App\Models\manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
