@@ -18,14 +18,14 @@
         </div>
       </div>
 
-      
+
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -36,44 +36,47 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{ route('manager.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Managers</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="{{ route('manager.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Manager</p>
                 </a>
               </li>
-              
+
             </ul>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Managers
+                Admin
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="{{ route('admin.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
+                  <p>List Admin</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="{{ route('admin.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
+                  <p>Add Admin</p>
                 </a>
               </li>
-              
+
             </ul>
           </li>
+
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -95,7 +98,7 @@
                   <p>Add Floor</p>
                 </a>
               </li>
-              
+
             </ul>
           </li>
           <li class="nav-item">
@@ -119,11 +122,36 @@
                   <p>Add Receptionists</p>
                 </a>
               </li>
-              
+
+          
+          </ul>
+
+            </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+               Manage Clients
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/dashboard/receptionists/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Receptionists</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/receptionists/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Receptionists</p>
+                </a>
+              </li>
+
             </ul>
           </li>
-          
-          
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

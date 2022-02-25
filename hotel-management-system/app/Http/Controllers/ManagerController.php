@@ -4,82 +4,130 @@ namespace App\Http\Controllers;
 
 use App\Models\manager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ManagerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    // public function loginManager()
+    // {
+    //     return view('auth.loginManger');
+    // }
+
+    // public function loginManager()
+    // {
+    //     // return view('auth.loginManger');
+    // }
+
+
+
     public function index()
     {
-        //
+        $managers=manager::get();
+        return view('dashboard.manager.index',['managers' => $managers]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function create()
     {
-        //
+        return view('dashboard.manager.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        //validation
+        $request->validate([
+            'email' =>'required|email',
+            'name' =>'required|string|min:3|max:50',
+            'password' =>'required|min:6',
+            'national_id' =>'required|max:50',
+            'avatar_img' =>'required|image|mimes:jpeg,png',
+        ]);
+        //$request->validate();
+        //$request->validated();
+        $img=$request->file('avatar_img');             //bmsek el soura
+        $ext=$img->getClientOriginalExtension();   //bgeb extention
+        $image="man -".uniqid().".$ext";            // conncat ext +name elgded
+        $img->move(public_path("uploads/manager/"),$image);
+        manager::create([
+            'name'=>$request->name ,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'national_id'=>$request->national_id ,
+            'avatar_img'=>$image,
+        ]);
+
+      return redirect(route('manager.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\manager  $manager
-     * @return \Illuminate\Http\Response
-     */
-    public function show(manager $manager)
+
+    public function show($id)
     {
-        //
+        $manager=manager::findOrFail($id);
+        return view('dashboard.manager.show',compact('manager'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\manager  $manager
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(manager $manager)
+    public function edit($id)
     {
-        //
+        $manager=manager::findOrFail($id);
+        return view('dashboard.manager.edit',compact('manager'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\manager  $manager
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, manager $manager)
+
+    public function update(Request $request, $id)
     {
-        //
+
+        //validation
+        $request->validate([
+            'email' =>'required|email',
+            'name' =>'required|string|min:3|max:50',
+            'password' =>'required|min:6',
+            'national_id' =>'required|max:50',
+            'avatar_img' =>'image|mimes:jpeg,png',
+        ]);
+        //$request->validated();
+        $manager=manager::findOrFail($id);
+        $name=$manager->avatar_img;
+        if ($request->hasFile('avatar_img'))
+        {
+            $img=$request->file('avatar_img');             //bmsek el soura
+            $ext=$img->getClientOriginalExtension();   //bgeb extention
+            $name="man -".uniqid().".$ext";            // conncat ext +name elgded
+            $img->move(public_path("uploads/manager/"),$name);   //elmkan , $name elgded
+
+        }
+
+        $manager->update([
+            'name'=>$request->name ,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'national_id'=>$request->national_id ,
+            'avatar_img'=>$name,
+        ]);
+
+        return redirect(route('manager.index',$id));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\manager  $manager
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(manager $manager)
+
+    public function destroy($id)
     {
-        //
+        $manager=manager::findOrFail($id);
+        $manager->delete();
+        return redirect(route('manager.index'));
     }
+
+
+    public function auth(Request $request)
+    {
+        if (manager::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Authentication passed...
+            return redirect()->route('dashboard.layout.master');
+        }
+    }
+
+
+
 }

@@ -6,11 +6,25 @@ use App\Models\receptionist;
 use App\Models\manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class ReceptionistController extends Controller
 {
-   
+    public function loginForm()
+    {
+        return view('receptionistLogin .login');
+    }
+    public function Login(Request $request)
+    {
+        $check = $request->all();
+        if (Auth::guard('receptionist')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
+            return redirect('/dashboard/receptionists/')->with('error', 'receptionist login sucess');
+        } else {
+            return back()->with('error', 'invalid email ');;
+        }
+    }
     public function index()
     {
          

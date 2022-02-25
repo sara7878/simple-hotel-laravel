@@ -40,6 +40,22 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+         //Admin guards
+         'admin'=>[
+            'driver'=>'session',
+            'provider'=>'admins'
+         ],
+
+            'receptionist'=>[
+                'driver'=>'session',
+                'provider'=>'receptionists'
+            ]
+        // 'admin-api' => [
+        //     'driver' => 'token',
+        //     'provider' => 'admins',
+        // ],
+
     ],
 
     /*
@@ -59,6 +75,8 @@ return [
     |
     */
 
+
+
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
@@ -69,6 +87,16 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\admin::class,
+        ],
+
+        'receptionists' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\receptionist::class,
+        ],
     ],
 
     /*
@@ -93,6 +121,14 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        // 'admins' => [
+        //     'provider' => 'admins',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        
+        // ],
+
     ],
 
     /*
