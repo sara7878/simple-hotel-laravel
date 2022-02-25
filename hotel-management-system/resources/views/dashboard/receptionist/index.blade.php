@@ -68,7 +68,7 @@
                     <td> <img src='{{ asset("uploads/receptionist/$recp->avatar_img") }}' width="80" height="80"></td>
                     <td>  
                    
-                    <span> <a href="/edit/{{ $recp-> id }}" class="btn btn-primary">edit </a></span>
+                    <span> <a href="/editrecp/{{ $recp-> id }}" class="btn btn-primary">edit </a></span>
    
    
                   <form method="post" class="delete_form d-inline "  action="{{ route('receptionist.delete', ['id' => $recp->id]) }}">

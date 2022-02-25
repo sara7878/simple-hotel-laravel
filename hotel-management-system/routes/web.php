@@ -39,8 +39,8 @@ Route::get('/dashboard/receptionists/',[ReceptionistController::class, 'index'])
 Route::get('/dashboard/receptionists/create',[ReceptionistController::class, 'create']);
 Route::post('/dashboard/receptionists/store',[ReceptionistController::class, 'store'])->name('dashboard.receptionist.store');
 Route::delete('/delete/{id}', [ReceptionistController::class, 'destroy'])->name('receptionist.delete');
-Route::get('/edit/{id}', [ReceptionistController::class, 'edit'])->name('dashboard.receptionist.edit');
-Route::post('/saveEdit/{id}', [ReceptionistController::class, 'update'])->name('dashboard.receptionist.update');
+Route::get('/editrecp/{id}', [ReceptionistController::class, 'edit'])->name('dashboard.receptionist.edit');
+Route::post('/saveEditrecp/{id}', [ReceptionistController::class, 'update'])->name('dashboard.receptionist.update');
 Route::get('/show/{id}', [ReceptionistController::class, 'show'])->name('dashboard.receptionist.show');
 
 
