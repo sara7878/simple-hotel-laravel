@@ -35,6 +35,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+Route::prefix('admin')->group(function(){
+    
+//get form
+Route::get('/login',[AdminController::class,'loginForm'])->name('login.form');
+//check
+Route::post('/login/owner', [AdminController::class, 'Login'])->name('admin.login');
+// Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('admin.dashboard');
+
+
+});
+
 Route::get('/home', function () {
     return view('dashboard.layout.master');
 })->middleware(['auth'])->name('dashboard');
