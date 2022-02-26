@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Rinvex\Country\CountryLoader;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -37,6 +38,13 @@ class ClientController extends Controller
     {
         $clients = client::all();
         return view('dashboard.client.index', ['clients' => $clients]);
+    }
+    public function approve()
+    {
+        $clients =  DB::table('clients')
+        ->where('status', '=', 'approved')
+        ->get();
+        return view('dashboard.client.approve', ['clients' => $clients]);
     }
 
     /**
@@ -121,7 +129,11 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = client::find($id);
-        return view('dashboard.client.edit', ['id' => $id, 'client' => $client]);
+        $client->status= 'approved';
+        $client->save();
+        return redirect()->route('client.index');
+        //  return view('dashboard.client.edit', ['id' => $id, 'client' => $client]);
+
     }
 
     /**

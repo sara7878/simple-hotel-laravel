@@ -74,15 +74,8 @@
                                     <td>
                                         <a href="{{route('client.show',['id'=> $client->id])}}"><i class="fas fa-eye text-primary mx-2"></i></a>
 
-                                        <form method="post" action="{{ route('client.edit',['id' => $client->id])}}" class="d-inline">
-                                            @csrf
-                                            <button class="btn btn-none"><i class="fas fa-check text-success"></i></button>
-                                        </form>
-                                        <form method="post" action="{{ route('client.delete',['id' => $client->id])}}" class="d-inline">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-none"><i class="fas fa-times text-danger"></i></button>
-                                        </form>
+                                        
+                                       
                                     </td>
                                 </tr>
                                 @endforeach

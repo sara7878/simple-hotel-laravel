@@ -27,6 +27,7 @@
                with font-awesome or any other icon font library -->
 
         <li class="nav-item">
+        @if(Auth::guard('admin')->check())
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
             <p>
@@ -75,32 +76,10 @@
 
           </ul>
         </li>
+@endif
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>
-              Rooms
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-
-              <a href="{{ route('room.index') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>List Rooms</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('room.create') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Room</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-
+      
+        @if(Auth::guard('receptionist')->check())
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
@@ -122,10 +101,16 @@
                 <p>Add Client --- not right</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{route('client.approve')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Approved clients</p>
+              </a>
+            </li>
 
           </ul>
         </li>
-
+      
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
@@ -162,9 +147,84 @@
           </ul>
         </li>
 
+              @endif
+              @if(Auth::guard('manager')->check())
+              <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Floors
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/dashboard/floors/" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>List Floors</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/dashboard/floors/create" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add Floor</p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Receptionists
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/dashboard/receptionists/" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>List Receptionists</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/dashboard/receptionists/create" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add Receptionists</p>
+              </a>
+            </li>
 
 
+          </ul>
+        </li>
 
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Rooms
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+
+              <a href="{{ route('room.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>List Rooms</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('room.create') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add Room</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        @endif
 
       </ul>
     </nav>

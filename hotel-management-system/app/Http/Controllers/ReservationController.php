@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\StoreReservationRequest;
 use App\Models\reservation;
 use Illuminate\Http\Request;
-
 class ReservationController extends Controller
 {
     /**

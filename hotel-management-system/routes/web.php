@@ -13,48 +13,9 @@ use App\Http\Controllers\ReceptionistController;
 
 
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-
-
-// })->middleware(['auth'])->name('dashboard');
-
-
-
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/home', function () {
-
-
-// });
-
-
-
-
-
-
-
 Route::prefix('admin')->group(function(){
 
-// Route::prefix('admin')->group(function(){
 
-
-//get form
 Route::get('/login',[AdminController::class,'loginForm'])->name('login.form');
 //check
 Route::post('/login/owner', [AdminController::class, 'Login'])->name('admin.login');
@@ -100,31 +61,61 @@ Route::prefix('receptionist')->group(function(){
 
 
 
-//login
-// Route::get('manager/loginManager/',[ManagerController::class, 'loginManager'])->name('manager.login');
-// Route::post('manager/login/',[ManagerController::class, 'auth'])->name('auth.loginManager');
 
-Route::get('/dashboard/clients', [ClientController::class,'index'])->middleware(['client'])->name('client.index');
-Route::post('/dashboard/clients/store', [ClientController::class,'store'])->middleware(['client'])->name('client.store');
-Route::get('/dashboard/clients/create', [ClientController::class,'create'])->middleware(['client'])->name('client.create');
-Route::post('/dashboard/clients/edit/{id}',[ClientController::class, 'edit'])->middleware(['client'])->name('client.edit');
-Route::get('/dashboard/clients/update/{id}',[ClientController::class, 'update'])->middleware(['client'])->name('client.update');
-Route::delete('/dashboard/clients/delete/{id}',[ClientController::class, 'destroy'])->middleware(['client'])->name('client.delete');
-Route::get('/dashboard/clients/{id}', [ClientController::class,'show'])->middleware(['client'])->name('client.show');
+// Route::get('/dashboard/clients', [ClientController::class,'index'])->middleware(['client'])->name('client.index');
+// Route::post('/dashboard/clients/store', [ClientController::class,'store'])->middleware(['client'])->name('client.store');
+// Route::get('/dashboard/clients/create', [ClientController::class,'create'])->middleware(['client'])->name('client.create');
+// Route::post('/dashboard/clients/edit/{id}',[ClientController::class, 'edit'])->middleware(['client'])->name('client.edit');
+// Route::get('/dashboard/clients/update/{id}',[ClientController::class, 'update'])->middleware(['client'])->name('client.update');
+// Route::delete('/dashboard/clients/delete/{id}',[ClientController::class, 'destroy'])->middleware(['client'])->name('client.delete');
+// Route::get('/dashboard/clients/{id}', [ClientController::class,'show'])->middleware(['client'])->name('client.show');
+
+// Route::get('/dashboard/reservations', [ReservationController::class,'index'])->name('reservation.index');
+// Route::get('/dashboard/client-reservations', [ReservationController::class,'showAll'])->name('reservation.clientReservations');
+// Route::get('/dashboard/show-reservations', [ReservationController::class,'showAllforAdmin'])->name('reservation.showReservations');
+
+// Route::post('/dashboard/reservations/store', [ReservationController::class,'store'])->name('reservation.store');
+// Route::get('/dashboard/reservations/create', [ReservationController::class,'create'])->name('reservation.create');
+// Route::post('/dashboard/reservations/edit/{id}',[ReservationController::class, 'edit'])->name('reservation.edit');
+// Route::post('/dashboard/reservations/update/{id}',[ReservationController::class, 'update'])->name('reservation.update');
+// Route::delete('/dashboard/reservations/delete/{id}',[ReservationController::class, 'destroy'])->name('reservation.delete');
+// Route::get('/dashboard/reservations/{id}', [ReservationController::class,'show'])->name('reservation.show');
+
+
+
+Route::get('/dashboard/clients', [ClientController::class,'index'])->name('client.index');
+Route::get('/dashboard/clients/approve', [ClientController::class,'approve'])->name('client.approve');
+
+Route::post('/dashboard/clients/store', [ClientController::class,'store'])->name('client.store');
+Route::get('/dashboard/clients/create', [ClientController::class,'create'])->name('client.create');
+Route::post('/dashboard/clients/edit/{id}',[ClientController::class, 'edit'])->name('client.edit');
+Route::get('/dashboard/clients/update/{id}',[ClientController::class, 'update'])->name('client.update');
+Route::delete('/dashboard/clients/delete/{id}',[ClientController::class, 'destroy'])->name('client.delete');
+Route::get('/dashboard/clients/{id}', [ClientController::class,'show'])->name('client.show');
 
 Route::get('/dashboard/reservations', [ReservationController::class,'index'])->name('reservation.index');
 Route::get('/dashboard/client-reservations', [ReservationController::class,'showAll'])->name('reservation.clientReservations');
 Route::get('/dashboard/show-reservations', [ReservationController::class,'showAllforAdmin'])->name('reservation.showReservations');
 
 Route::post('/dashboard/reservations/store', [ReservationController::class,'store'])->name('reservation.store');
-//////needs modification
-//////url should be : /reservations/rooms/{roomId}
-// Route::get('/dashboard/reservations/rooms/{roomId}', [ReservationController::class,'create'])->name('reservation.create');
 Route::get('/dashboard/reservations/create', [ReservationController::class,'create'])->name('reservation.create');
 Route::post('/dashboard/reservations/edit/{id}',[ReservationController::class, 'edit'])->name('reservation.edit');
 Route::post('/dashboard/reservations/update/{id}',[ReservationController::class, 'update'])->name('reservation.update');
 Route::delete('/dashboard/reservations/delete/{id}',[ReservationController::class, 'destroy'])->name('reservation.delete');
 Route::get('/dashboard/reservations/{id}', [ReservationController::class,'show'])->name('reservation.show');
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // index managere
