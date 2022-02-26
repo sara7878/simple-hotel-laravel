@@ -4,24 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\manager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ManagerController extends Controller
 {
 
-    // public function loginManager()
-    // {
-    //      return view('auth.loginManager');
-    // }
+    public function loginForm()
+    {
+        return view('managerLogin.login');
+    }
+    public function Login(Request $request)
+    {
+        $check = $request->all();
+        if (Auth::guard('manager')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
+            return redirect('/manager');
+        } else {
+            return back()->with('error', 'invalid email ');;
+        }
+    }
 
-
-    // public function auth(Request $request)
-    // {
-    //     if (manager::attempt(['email' => $request->email, 'password' => $request->password])) {
-    //         // Authentication passed...
-    //         return redirect()->route('dashboard.layout.master');
-    //     }
-    // }
+    public function logout(){
+        Auth::guard('admin')->logout();
+        return redirect()->route('login.form')->with('error', 'Admin Logout
+            Successfully');
+     }
 
     public function index()
     {

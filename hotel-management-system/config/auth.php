@@ -49,15 +49,20 @@ return [
 
             'receptionist'=>[
                 'driver'=>'session',
-                'provider'=>'receptionists'],
+                'provider'=>'receptionists'
+            ],
          'client'=>[
             'driver'=>'session',
             'provider'=>'clients'
-            ]
+         ],
         // 'admin-api' => [
         //     'driver' => 'token',
         //     'provider' => 'admins',
         // ],
+        'manager'=>[
+            'driver'=>'session',
+            'provider'=>'managers'
+            ]
 
     ],
 
@@ -98,6 +103,11 @@ return [
         'clients' => [
             'driver' => 'eloquent',
             'model' => App\Models\client::class,
+        ],
+
+        'managers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\manager::class,
         ],
 
         'receptionists' => [

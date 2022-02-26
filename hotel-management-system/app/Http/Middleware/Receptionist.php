@@ -22,7 +22,7 @@ class Receptionist
         if (!Auth::guard('receptionist')->check()) {
             # code...
 //error
-            return redirect()->route('receptionist.login.form')->with('error' , 'pleaxe login first');
+            return redirect()->route('receptionist.login.form')->with('error' , 'please login first');
 
         }
         return $next($request);
