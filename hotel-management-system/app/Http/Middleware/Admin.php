@@ -21,6 +21,8 @@ class Admin
             # code...
             return redirect()->route('login')->with('error' , 'please login first');
 
+            // return redirect()->route('admin.login.form');
+
         }
         return $next($request);
     }

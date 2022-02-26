@@ -9,10 +9,10 @@ class room extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        'name' , 'number' ,'capacity', 'price','manager_id','floor_id','status'
+    ];
 
-    /**
-     * Get the floor that owns the comment.
-     */
     public function floor()
     {
         return $this->belongsTo(floor::class);
@@ -25,5 +25,10 @@ class room extends Model
     public function reservation()
     {
         return $this->belongsTo(reservation::class);
+    }
+    public function manager()
+    {
+        return $this->belongsTo(manager::class);
+
     }
 }

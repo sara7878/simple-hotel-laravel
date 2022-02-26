@@ -18,7 +18,7 @@ class AdminController extends Controller
     {
         $check = $request->all();
         if (Auth::guard('admin')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
-            return redirect('/home')->with('error', 'admin login sucess');
+            return redirect('/hotel');
         } else {
             return back()->with('error', 'invalid email ');;
         }

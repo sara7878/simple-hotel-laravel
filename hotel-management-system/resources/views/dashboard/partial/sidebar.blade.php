@@ -27,12 +27,13 @@
                with font-awesome or any other icon font library -->
 
                @if(Auth::guard('admin')->check())
-               
+
                <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-edit"></i>
                   <p>
-                    Admin
+
+                    Admins
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -53,6 +54,7 @@
                 </ul>
               </li>
 
+
               @endif
 
 
@@ -65,27 +67,82 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('manager.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
-                </a>
+                    <li class="nav-item">
+                      <a href="{{ route('admin.create') }}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add Admin</p>
+                      </a>
+                    </li>
+
+                  </ul>
               </li>
+
               <li class="nav-item">
-                <a href="{{ route('manager.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Managers
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('manager.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List Managers</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+
+                    <a href="{{ route('manager.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add Manager</p>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+
+
+
+
+              
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Rooms
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+
+                    <a href="{{ route('room.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List Rooms</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('room.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add Room</p>
+                    </a>
+                  </li>
+
+                </ul>
               </li>
 
             </ul>
           </li>
+
 
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Reservations
+               Floors
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -100,19 +157,26 @@
                 <a href="{{route('reservation.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Reservation</p>
+                <a href="/dashboard/floors/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Floors</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/floors/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Floor</p>
                 </a>
               </li>
 
             </ul>
           </li>
-
-
-
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Clients
+               Receptionists
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -127,35 +191,51 @@
                 <a href="{{route('client.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Client --- not right</p>
+
+                <a href="/dashboard/receptionists/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Receptionists</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/receptionists/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Receptionists</p>
                 </a>
               </li>
 
-            </ul>
-          </li>
+
+          </ul>
+
+            </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Managers
+               Manage Clients
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+            <li class="nav-item">
+                <a href="/dashboard/receptionists/approve" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
+                  <p>clients to approve</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="/dashboard/receptionists/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
+                  <p>approved clients</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/receptionists/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>My clients reservations</p>
                 </a>
               </li>
 
-            </ul>
-          </li>
 
 
         </ul>
