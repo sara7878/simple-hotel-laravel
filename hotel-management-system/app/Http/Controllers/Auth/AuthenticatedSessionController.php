@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
-        return redirect('/home');
+        return redirect('/hotel');
     }
 
 
@@ -43,8 +43,34 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect()->route('admin.login.form');
+
+        // if(Auth::guard('manager')->check()) // this means that the admin was logged in.
+        // {
+        //     Auth::guard('manager')->logout();
+        //     return redirect()->route('loginManager.form');
+        // }
+    
+        // $this->guard()->logout();
+        // $request->session()->invalidate();
+    
+        // return $this->loggedOut($request) ?: redirect('/manager/login');
     }
+
+    // public function logout( Request $request )
+    // {
+    //     dd('manager');
+    //     if(Auth::guard('manager')->check()) // this means that the admin was logged in.
+    //     {
+    //         Auth::guard('manager')->logout();
+    //         return redirect()->route('loginManager.form');
+    //     }
+    
+    //     $this->guard()->logout();
+    //     $request->session()->invalidate();
+    
+    //     return $this->loggedOut($request) ?: redirect('/manager/login');
+    // }
 
 
 

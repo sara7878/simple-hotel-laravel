@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class Manager
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,8 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guard('admin')->check()) {
-            # code...
-//error
-            return redirect()->route('admin.login.form');
-
+        if (!Auth::guard('manager')->check()) {
+            return redirect()->route('loginManager.form');
         }
         return $next($request);
     }

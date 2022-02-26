@@ -45,11 +45,15 @@ return [
          'admin'=>[
             'driver'=>'session',
             'provider'=>'admins'
-            ]
+         ],
         // 'admin-api' => [
         //     'driver' => 'token',
         //     'provider' => 'admins',
         // ],
+        'manager'=>[
+            'driver'=>'session',
+            'provider'=>'managers'
+            ]
 
     ],
 
@@ -88,6 +92,10 @@ return [
             'model' => App\Models\admin::class,
         ],
 
+        'managers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\manager::class,
+        ],
 
     ],
 
