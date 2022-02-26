@@ -21,6 +21,7 @@ class CreateReceptionistsTable extends Migration
             $table->string('national_id')->unique();
             $table->foreignId('manager_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('avatar_img')->default('avatar.jpg');
+            $table->boolean('force_logout')->default(0);
             $table->timestamps();
         });
     }

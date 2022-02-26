@@ -46,6 +46,10 @@ return [
             'driver'=>'session',
             'provider'=>'admins'
          ],
+
+            'receptionist'=>[
+                'driver'=>'session',
+                'provider'=>'receptionists'],
          'client'=>[
             'driver'=>'session',
             'provider'=>'clients'
@@ -96,7 +100,10 @@ return [
             'model' => App\Models\client::class,
         ],
 
-
+        'receptionists' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\receptionist::class,
+        ],
     ],
 
     /*

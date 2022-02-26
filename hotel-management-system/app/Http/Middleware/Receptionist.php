@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class Receptionist
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,13 @@ class Admin
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
+
     {
-        if (!Auth::guard('admin')->check()) {
+
+        if (!Auth::guard('receptionist')->check()) {
             # code...
 //error
-            return redirect()->route('admin.login.form')->with('error' , 'pleaxe login first');
+            return redirect()->route('receptionist.login.form')->with('error' , 'pleaxe login first');
 
         }
         return $next($request);

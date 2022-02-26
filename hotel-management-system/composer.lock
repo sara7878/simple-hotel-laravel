@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
+    "content-hash": "b6bb5e9e952342331116d1e8a410caa1",
+=======
     "content-hash": "78194c1e5494ba33ee3fe12e668f0caf",
+>>>>>>> 5e244889e6db480159858ac8013c8dd1d682b316
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2846,6 +2850,7 @@
             ],
             "time": "2021-09-25T23:10:38+00:00"
         },
+      
         {
             "name": "rinvex/countries",
             "version": "v7.3.2",
