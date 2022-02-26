@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\StoreReservationRequest;
 use App\Models\client;
 use App\Models\reservation;
@@ -82,7 +81,7 @@ class ReservationController extends Controller
         $reservations = client::all();
         return redirect()->route('reservation.manage',['reservations' => $reservations]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *

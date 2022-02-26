@@ -28,6 +28,7 @@
 
 
         <li class="nav-item">
+          @if(Auth::guard('admin')->check())
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
             <p>
@@ -76,39 +77,10 @@
 
           </ul>
         </li>
+        @endif
 
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>
-              Rooms
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
 
-              <a href="{{ route('room.index') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>List Rooms</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('room.create') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Room</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('room.showAvail') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Show Available Rooms</p>
-              </a>
-            </li>
-
-          </ul>
-        </li>
-
+        @if(Auth::guard('receptionist')->check())
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
@@ -131,16 +103,11 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('client.manage')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Clients</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('client.approved')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Approved Clients</p>
-              </a>
+              
+                <a href="{{route('client.approve')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Approved clients</p>
+                </a>
             </li>
 
           </ul>
@@ -161,7 +128,12 @@
                 <p>List Reservations</p>
               </a>
             </li>
-            
+            <li class="nav-item">
+              <a href="{{route('reservation.create')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add Reservation</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="{{route('reservation.clientReservations')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -174,8 +146,25 @@
                 <p>List Reservations for Admin</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{route('reservation.manage')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Reservations</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('reservation.approved')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Approved Reservations</p>
+              </a>
+            </li>
+
           </ul>
         </li>
+
+        @endif
+
+
 
         <li class="nav-item">
           <a href="#" class="nav-link">
@@ -223,10 +212,44 @@
                 <p>Add Receptionists</p>
               </a>
             </li>
+          </ul>
+        </li>
 
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Rooms
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('room.index') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>List Rooms</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('room.create') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add Room</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('room.showAvail') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Show Available Rooms</p>
+              </a>
+            </li>
 
           </ul>
         </li>
+
+
+      </ul>
+
 
     </nav>
     <!-- /.sidebar-menu -->
