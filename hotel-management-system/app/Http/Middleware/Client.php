@@ -20,7 +20,7 @@ class Client
         if (!Auth::guard('client')->check()) {
             # code...
 //error
-            return redirect()->route('client.login.form')->with('error' , 'please login first');
+            return redirect()->route('login')->with('error' , 'please login first');
 
         }
         return $next($request);

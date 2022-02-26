@@ -28,7 +28,6 @@ class StoreReservationRequest extends FormRequest
             'paid_price' => 'bail|required|integer',
             'room_number' => 'bail|required|min:4',
             'client_id' => 'bail|required',
-            'receptionist_id' => 'bail|required'
         ];
     }
 }

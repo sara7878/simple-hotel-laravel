@@ -42,13 +42,14 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Reservations</h3>
+                        <h3 class="card-title">Manage Reservations</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
+                                    <th>Client Name</th>
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
@@ -58,15 +59,18 @@
                             <tbody>
                                 @foreach ($reservations as $reservation)
                                 <tr>
+                                    <td>{{$reservation->client->name}}</td>
                                     <td>{{$reservation->accompany_number}}</td>
                                     <td>{{$reservation->paid_price}}</td>
                                     <td>{{$reservation->room_number}}</td>
                                     <td>
-                                        
-                                        <form method="post" action="{{ route('reservation.delete',['id' => $reservation->id])}}" class="d-inline">
+                                    <form method="post" action="{{ route('reservation.approve',['id' => $reservation->id])}}" class="d-inline">
                                             @csrf
-                                            @method('delete')
-                                            <button class="btn btn-none btn-danger">Cancel Reservation</button>
+                                            <button class="btn btn-none btn-success" type="submit">Approve</button>
+                                        </form>
+                                        <form method="post" action="{{ route('reservation.reject',['id' => $reservation->id])}}" class="d-inline">
+                                            @csrf
+                                            <button class="btn btn-none btn-danger" type="submit">Reject</button>
                                         </form>
                                     </td>
                                 </tr>

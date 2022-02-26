@@ -44,7 +44,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="post" action="{{route('reservation.store')}}">
+                    <form method="post" action="{{route('reservation.make',['roomId'=>$roomId])}}">
                         @csrf
                         @if($errors)
                         <div class="card-body">
@@ -53,26 +53,8 @@
                                 <input type="number" name="accompany_number" class="form-control" id="accompany_number" placeholder="Enter accompany number">
                                 <span class="text-danger">{{$errors->first('accompany_number')}}</span>
                             </div>
-                            <div class="form-group">
-                                <label for="paid_price">Paid Price</label>
-                                <input type="number" name="paid_price" class="form-control" id="paid_price" placeholder="Enter paid price">
-                            <span class="text-danger">{{$errors->first('paid_price')}}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="room_number">Room Number</label>
-                                <input type="number" name="room_number" class="form-control" id="room_number" placeholder="Enter room number">
-                            <span class="text-danger">{{$errors->first('room_number')}}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="client_id">client id</label>
-                                <input type="number" name="client_id" class="form-control" id="client_id" placeholder="client id">
-                            <span class="text-danger">{{$errors->first('client_id')}}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="receptionist_id">receptionist_id</label>
-                                <input type="number" name="receptionist_id" class="form-control" id="receptionist_id" placeholder="recepionist id">
-                            <span class="text-danger">{{$errors->first('receptionist_id')}}</span>
-                            </div>
+                           
+                            
                            
                             
                            

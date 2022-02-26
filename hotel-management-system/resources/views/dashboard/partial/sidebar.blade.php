@@ -99,6 +99,12 @@
                 <p>Add Room</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('room.showAvail') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Show Available Rooms</p>
+              </a>
+            </li>
 
           </ul>
         </li>
@@ -155,12 +161,7 @@
                 <p>List Reservations</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="{{route('reservation.create')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Reservation</p>
-              </a>
-            </li>
+            
             <li class="nav-item">
               <a href="{{route('reservation.clientReservations')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -200,7 +201,7 @@
 
           </ul>
         </li>
-        
+
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>

@@ -17,7 +17,19 @@ class RoomController extends Controller
     public function index()
     {
         $rooms=room::with('floor')->get();
+       
         return view('dashboard.room.index',['rooms' => $rooms]);
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showAvail()
+    {
+        $rooms = room::where('status', false)->get();
+        // $rooms=room::with('floor')->get();
+        return view('dashboard.room.showAvail',['rooms' => $rooms]);
     }
 
     public function indexAdmin()
