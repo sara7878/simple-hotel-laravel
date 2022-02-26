@@ -148,7 +148,7 @@
         </li>
 
               @endif
-              @if(Auth::guard('manager')->check())
+             
               <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
@@ -224,7 +224,7 @@
             </li>
           </ul>
         </li>
-        @endif
+       
 
       </ul>
     </nav>
