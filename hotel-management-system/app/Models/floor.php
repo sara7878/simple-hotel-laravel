@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class floor extends Model
 {
     use HasFactory;
+
+
+    /**
+     * Get the rooms of the floor.
+     */
+    public function rooms()
+    {
+        return $this->hasMany(room::class);
+    }
 }

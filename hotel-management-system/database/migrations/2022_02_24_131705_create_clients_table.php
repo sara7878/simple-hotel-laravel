@@ -19,9 +19,11 @@ class CreateClientsTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('mobile');
+
             $table->string('country')->nullable();
+            $table->string('avatar_img')->default('avatar.jpg');
             $table->enum('gender',['male', 'female']);
-            $table->enum('status',['pending','rejected','approved'])->default('rejected');
+            $table->enum('status',['pending','rejected','approved'])->default('pending');
             $table->timestamps();
         });
     }

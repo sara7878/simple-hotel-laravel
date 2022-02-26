@@ -26,6 +26,36 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
+               @if(Auth::guard('admin')->check())
+               
+               <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Admin
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('admin.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List Admin</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('admin.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add ADmin</p>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+
+              @endif
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -50,25 +80,26 @@
 
             </ul>
           </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Admin
+                Reservations
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.index') }}" class="nav-link">
+                <a href="/dashboard/reservations" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>List Admin</p>
+                  <p>List Reservations</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('admin.create') }}" class="nav-link">
+                <a href="{{route('reservation.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Admin</p>
+                  <p>Add Reservation</p>
                 </a>
               </li>
 
@@ -81,21 +112,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Managers
+                Clients
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Managers</p>
-                </a>
+                <a href="/dashboard/clients" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List Clients</p>
+                  </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="{{route('client.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Manager</p>
+                  <p>Add Client --- not right</p>
                 </a>
               </li>
 
