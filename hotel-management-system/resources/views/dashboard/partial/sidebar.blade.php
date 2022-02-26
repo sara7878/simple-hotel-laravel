@@ -122,6 +122,18 @@
                 <p>Add Client --- not right</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="{{route('client.manage')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Clients</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('client.approved')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Approved Clients</p>
+              </a>
+            </li>
 
           </ul>
         </li>

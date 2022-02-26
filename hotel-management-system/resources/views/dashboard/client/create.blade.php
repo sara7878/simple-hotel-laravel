@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputMobile">Mobile Number</label>
-                                <input type="number" name="mobile" class="form-control" id="exampleInputMobile" placeholder="Enter mobile number">
+                                <input type="text" name="mobile" class="form-control" id="exampleInputMobile" placeholder="Enter mobile number">
                                 <span class="text-danger">{{$errors->first('mobile')}}</span>
                             </div>
                             <div class="form-group">

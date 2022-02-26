@@ -6,6 +6,7 @@ use App\Http\Requests\StoreClientRequest;
 use App\Models\client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Rinvex\Country\CountryLoader;
@@ -37,6 +38,64 @@ class ClientController extends Controller
     {
         $clients = client::all();
         return view('dashboard.client.index', ['clients' => $clients]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showUnapproved()
+    {
+        // $clients = client::all();
+        $clients = client::where('status', 'pending')->get();
+        // $clients = DB::table('clients')
+        // ->where('status','pending')
+        // ->get();
+        return view('dashboard.client.manageClients', ['clients' => $clients]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function approve($id)
+    {
+        $client = client::find($id);
+        $client->status = 'approved';
+        $client->save();
+        $clients = client::all();
+        return redirect()->route('client.approved',['clients' => $clients]);
+        // return view('dashboard.client.approved', ['clients' => $clients]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function reject($id)
+    {
+        $client = client::find($id);
+        $client->status = 'rejected';
+        $client->save();
+        $clients = client::all();
+        return redirect()->route('client.manage',['clients' => $clients]);
+        // return view('dashboard.client.manageClients', ['clients' => $clients]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showApproved()
+    {
+        $clients = DB::table('clients')
+            ->where('status', '=', 'approved')
+            ->get();
+        return view('dashboard.client.approved', ['clients' => $clients]);
     }
 
     /**
@@ -143,23 +202,21 @@ class ClientController extends Controller
         // $client->country = $request->country;
         // $client->gender = $request->gender;
 
-        $name=$client->img;
-        if ($request->hasFile('img'))
-        {
-            if($name !== null)
-            {
-                unlink(public_path('uploads/clients/'.$name));
+        $name = $client->img;
+        if ($request->hasFile('img')) {
+            if ($name !== null) {
+                unlink(public_path('uploads/clients/' . $name));
             }
             //move
-        $img=$request->file('img');             //bmsek el soura
-        $ext=$img->getClientOriginalExtension();   //bgeb extention
-        $name="client-".uniqid().".$ext";            // conncat ext +name elgded
-        $img->move(public_path("uploads/clients"),$name);   //elmkan , $name elgded
+            $img = $request->file('img');             //bmsek el soura
+            $ext = $img->getClientOriginalExtension();   //bgeb extention
+            $name = "client-" . uniqid() . ".$ext";            // conncat ext +name elgded
+            $img->move(public_path("uploads/clients"), $name);   //elmkan , $name elgded
 
         }
 
         $client->avatar_img = $name;
-        
+
         $client->save();
         return redirect()->route('client.index');
     }

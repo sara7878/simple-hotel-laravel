@@ -98,6 +98,11 @@ Route::prefix('client')->group(function(){
 // Route::post('manager/login/',[ManagerController::class, 'auth'])->name('auth.loginManager');
 
 Route::get('/dashboard/clients', [ClientController::class,'index'])->middleware(['client'])->name('client.index');
+Route::get('/dashboard/clients/manage', [ClientController::class,'showUnapproved'])->middleware(['client'])->name('client.manage');
+Route::post('/dashboard/clients/approve/{id}', [ClientController::class,'approve'])->middleware(['client'])->name('client.approve');
+Route::post('/dashboard/clients/reject/{id}', [ClientController::class,'reject'])->middleware(['client'])->name('client.reject');
+Route::get('/dashboard/clients/approved', [ClientController::class,'showApproved'])->middleware(['client'])->name('client.approved');
+
 Route::post('/dashboard/clients/store', [ClientController::class,'store'])->middleware(['client'])->name('client.store');
 Route::get('/dashboard/clients/create', [ClientController::class,'create'])->middleware(['client'])->name('client.create');
 Route::post('/dashboard/clients/edit/{id}',[ClientController::class, 'edit'])->middleware(['client'])->name('client.edit');
