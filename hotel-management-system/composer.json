@@ -11,8 +11,13 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+<<<<<<< HEAD
         "spatie/laravel-permission": "^5.5",
         "rinvex/countries": "7.3.2"
+=======
+        "rinvex/countries": "7.3.2",
+        "spatie/laravel-permission": "^5.5"
+>>>>>>> 5e244889e6db480159858ac8013c8dd1d682b316
     },
     "require-dev": {
         "facade/ignition": "^2.5",

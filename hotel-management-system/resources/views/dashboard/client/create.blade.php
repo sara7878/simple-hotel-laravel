@@ -44,7 +44,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="post" action="{{route('client.store')}}">
+                    <form method="post" action="{{route('client.store')}}" enctype="multipart/form-data">
                         @csrf
                         @if($errors)
                         <div class="card-body">
@@ -81,6 +81,7 @@
                                     <option value="Italy">Italy</option> -->
                                 </select>
                             </div>
+
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gender" id="male" value="male">
                                 <label class="form-check-label" for="male">Male</label>
@@ -90,6 +91,12 @@
                                 <label class="form-check-label" for="female">
                                     Female
                                 </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="avatar_img">Image</label>
+                                <input type="file" class="form-control" name="avatar_img" id="avatar_img">
+                                <span class="text-danger">{{$errors->first('avatar_img')}}</span>
                             </div>
 
                         </div>

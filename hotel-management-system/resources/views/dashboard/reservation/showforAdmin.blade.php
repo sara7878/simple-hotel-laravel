@@ -42,19 +42,20 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Reservations</h3>
+                        <h3 class="card-title">Show Reservations</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>#</th>
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
-                                    <th>Client Id</th>
-                                    <th>Receptionist Id</th>
+                                    <th>Client Name</th>
+                                    <th>Client Status</th>
+                                    <th>Receptionist Name</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -65,8 +66,9 @@
                                     <td>{{$reservation->accompany_number}}</td>
                                     <td>{{$reservation->paid_price}}</td>
                                     <td>{{$reservation->room_number}}</td>
-                                    <td>{{$reservation->client_id}}</td>
-                                    <td>{{$reservation->receptionist_id}}</td>
+                                    <td>{{$reservation->client->name}}</td>
+                                    <td>{{$reservation->client->status}}</td>
+                                    <td>{{$reservation->receptionist->name}}</td>
                                     <td>
                                         <form method="post" action="{{ route('reservation.edit',['id' => $reservation->id])}}" class="d-inline">
                                             @csrf
@@ -87,8 +89,9 @@
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
-                                    <th>Client Id</th>
-                                    <th>Receptionist Id</th>
+                                    <th>Client Name</th>
+                                    <th>Client Status</th>
+                                    <th>Receptionist Name</th>
                                     <th>Actions</th>
                                 </tr>
                             </tfoot>

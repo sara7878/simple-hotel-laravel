@@ -58,6 +58,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'receptionist' => \App\Http\Middleware\Receptionist::class,
 
+        'client'=> \App\Http\Middleware\Client::class,
         //user
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
