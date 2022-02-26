@@ -15,6 +15,16 @@ class manager extends Authenticatable
     protected $fillable=[
         'email' , 'name' , 'password' ,'national_id', 'avatar_img',
     ];
+    public function receptionists()
+    {
+        return $this->hasMany(receptionist::class);
+    }
+    public function floors()
+    {
+        return $this->hasMany(floor::class);
+    }
+
+   
 
     protected $hidden = [
         'password',

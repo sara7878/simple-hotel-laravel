@@ -98,10 +98,89 @@
                     </a>
                   </li>
 
+<<<<<<< HEAD
                 </ul>
               </li>
 
+=======
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+               Floors
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/dashboard/floors/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Floors</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/floors/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Floor</p>
+                </a>
+              </li>
 
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+               Receptionists
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/dashboard/receptionists/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>List Receptionists</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/receptionists/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Receptionists</p>
+                </a>
+              </li>
+
+          
+          </ul>
+
+            </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+               Manage Clients
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/dashboard/receptionists/approve" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>clients to approve</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/receptionists/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>approved clients</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/dashboard/receptionists/create" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>My clients reservations</p>
+                </a>
+              </li>
+>>>>>>> 4c03cbc5fa50666418271dd3cdc3850a4ccab1e7
 
 
 
