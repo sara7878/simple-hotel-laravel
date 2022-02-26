@@ -79,7 +79,6 @@
         </li>
         @endif
 
-
         @if(Auth::guard('receptionist')->check())
         <li class="nav-item">
           <a href="#" class="nav-link">
@@ -103,11 +102,11 @@
               </a>
             </li>
             <li class="nav-item">
-              
-                <a href="{{route('client.approve')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Approved clients</p>
-                </a>
+
+              <a href="{{route('client.approve')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Approved clients</p>
+              </a>
             </li>
 
           </ul>
@@ -161,8 +160,8 @@
 
           </ul>
         </li>
-
         @endif
+
 
 
 

@@ -63,6 +63,8 @@ class ReservationController extends Controller
     {
         $reservation = reservation::find($id);
         $reservation->status = 'approved';
+        $receptionist_id = Auth::guard('receptionist')->user()->id;
+        $reservation->resceptionist_id = $receptionist_id;
         $reservation->save();
         $reservations = client::all();
         return redirect()->route('reservation.approved',['reservations' => $reservations]);
@@ -77,9 +79,24 @@ class ReservationController extends Controller
     {
         $reservation = reservation::find($id);
         $reservation->status = 'rejected';
+        $receptionist_id = Auth::guard('receptionist')->user()->id;
+        $reservation->resceptionist_id = $receptionist_id;
         $reservation->save();
         $reservations = client::all();
         return redirect()->route('reservation.manage',['reservations' => $reservations]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showApproved()
+    {
+        $reservations = DB::table('reservations')
+            ->where('status', '=', 'approved')
+            ->get();
+        return view('dashboard.reservation.approved', ['reservations' => $reservations]);
     }
 
     /**

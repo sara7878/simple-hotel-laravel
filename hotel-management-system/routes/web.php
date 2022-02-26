@@ -113,9 +113,9 @@ Route::prefix('receptionist')->group(function () {
 // Client
 Route::get('/dashboard/clients', [ClientController::class, 'index'])->middleware(['client'])->name('client.index');
 Route::get('/dashboard/clients/manage', [ClientController::class, 'showUnapproved'])->middleware(['client'])->name('client.manage');
-Route::post('/dashboard/clients/approve/{id}', [ClientController::class, 'approve'])->middleware(['client'])->name('client.approve');
+// Route::post('/dashboard/clients/approve/{id}', [ClientController::class, 'approve'])->middleware(['client'])->name('client.approve');
 Route::post('/dashboard/clients/reject/{id}', [ClientController::class, 'reject'])->middleware(['client'])->name('client.reject');
-Route::get('/dashboard/clients/approved', [ClientController::class, 'showApproved'])->middleware(['client'])->name('client.approved');
+// Route::get('/dashboard/clients/approved', [ClientController::class, 'showApproved'])->middleware(['client'])->name('client.approved');
 // Route::get('/dashboard/clients', [ClientController::class,'index'])->middleware(['client'])->name('client.index');
 // Route::post('/dashboard/clients/store', [ClientController::class,'store'])->middleware(['client'])->name('client.store');
 // Route::get('/dashboard/clients/create', [ClientController::class,'create'])->middleware(['client'])->name('client.create');
@@ -140,12 +140,6 @@ Route::get('/dashboard/clients/approved', [ClientController::class, 'showApprove
 Route::get('/dashboard/clients', [ClientController::class,'index'])->name('client.index');
 Route::get('/dashboard/clients/approve', [ClientController::class,'approve'])->name('client.approve');
 
-Route::post('/dashboard/clients/store', [ClientController::class,'store'])->name('client.store');
-Route::get('/dashboard/clients/create', [ClientController::class,'create'])->name('client.create');
-Route::post('/dashboard/clients/edit/{id}',[ClientController::class, 'edit'])->name('client.edit');
-Route::get('/dashboard/clients/update/{id}',[ClientController::class, 'update'])->name('client.update');
-Route::delete('/dashboard/clients/delete/{id}',[ClientController::class, 'destroy'])->name('client.delete');
-Route::get('/dashboard/clients/{id}', [ClientController::class,'show'])->name('client.show');
 
 Route::post('/dashboard/clients/store', [ClientController::class, 'store'])->middleware(['client'])->name('client.store');
 Route::get('/dashboard/clients/create', [ClientController::class, 'create'])->middleware(['client'])->name('client.create');
@@ -156,6 +150,12 @@ Route::get('/dashboard/clients/{id}', [ClientController::class, 'show'])->middle
 // ===============================================================================================
 // Reservation
 Route::get('/dashboard/reservations', [ReservationController::class, 'index'])->name('reservation.index');
+
+Route::get('/dashboard/reservations/manage', [ReservationController::class, 'showUnapproved'])->name('reservation.manage');
+Route::post('/dashboard/reservations/approve/{id}', [ReservationController::class, 'approve'])->name('reservation.approve');
+Route::post('/dashboard/reservations/reject/{id}', [ReservationController::class, 'reject'])->name('reservation.reject');
+Route::get('/dashboard/reservations/approved', [ReservationController::class, 'showApproved'])->name('reservation.approved');
+
 Route::get('/dashboard/client-reservations', [ReservationController::class, 'showAll'])->name('reservation.clientReservations');
 Route::get('/dashboard/show-reservations', [ReservationController::class, 'showAllforAdmin'])->name('reservation.showReservations');
 

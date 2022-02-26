@@ -42,7 +42,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Manage Reservations</h3>
+                        <h3 class="card-title">Approved Reservations</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -53,7 +53,7 @@
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
-                                    <th>Actions</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,16 +63,7 @@
                                     <td>{{$reservation->accompany_number}}</td>
                                     <td>{{$reservation->paid_price}}</td>
                                     <td>{{$reservation->room_number}}</td>
-                                    <td>
-                                    <form method="post" action="{{ route('reservation.approve',['id' => $reservation->id])}}" class="d-inline">
-                                            @csrf
-                                            <button class="btn btn-none btn-success" type="submit">Approve</button>
-                                        </form>
-                                        <form method="post" action="{{ route('reservation.reject',['id' => $reservation->id])}}" class="d-inline">
-                                            @csrf
-                                            <button class="btn btn-none btn-danger" type="submit">Reject</button>
-                                        </form>
-                                    </td>
+                                    <td>{{$reservation->status}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -82,7 +73,7 @@
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
-                                    <th>Actions</th>
+                                    <th>Status</th>
                                 </tr>
                             </tfoot>
                         </table>

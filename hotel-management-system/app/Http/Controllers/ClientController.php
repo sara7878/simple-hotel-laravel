@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Rinvex\Country\CountryLoader;
-use Illuminate\Support\Facades\DB;
+
 
 class ClientController extends Controller
 {
@@ -68,15 +67,15 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function approve($id)
-    {
-        $client = client::find($id);
-        $client->status = 'approved';
-        $client->save();
-        $clients = client::all();
-        return redirect()->route('client.approved',['clients' => $clients]);
-        // return view('dashboard.client.approved', ['clients' => $clients]);
-    }
+    // public function approve($id)
+    // {
+    //     $client = client::find($id);
+    //     $client->status = 'approved';
+    //     $client->save();
+    //     $clients = client::all();
+    //     return redirect()->route('client.approved',['clients' => $clients]);
+    //     // return view('dashboard.client.approved', ['clients' => $clients]);
+    // }
 
     /**
      * Display a listing of the resource.
@@ -98,13 +97,13 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showApproved()
-    {
-        $clients = DB::table('clients')
-            ->where('status', '=', 'approved')
-            ->get();
-        return view('dashboard.client.approved', ['clients' => $clients]);
-    }
+    // public function showApproved()
+    // {
+    //     $clients = DB::table('clients')
+    //         ->where('status', '=', 'approved')
+    //         ->get();
+    //     return view('dashboard.client.approved', ['clients' => $clients]);
+    // }
 
     /**
      * Show the form for creating a new resource.
