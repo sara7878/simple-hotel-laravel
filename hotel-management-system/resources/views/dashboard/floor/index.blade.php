@@ -51,12 +51,15 @@
                   <tr>
                     <th>Name</th>
                     <th>number</th>
+                    @if(Auth::guard('admin')->check())
                     <th>Managed By</th>
+                    @endif
+
                     <th>Action</th>
 
-                  
 
-                   
+
+
                   </tr>
                   </thead>
                   <tbody>
@@ -65,18 +68,21 @@
                     <td>{{$floor-> name }}</td>
                     <td>{{$floor -> number }}
                     </td>
-                    <td>{{$floor-> manager -> name}}</td>
-                    <td>  
-                   
+                    @if(Auth::guard('admin')->check())
+                    <td>{{ $floor->manager->name??"not found" }}</td>
+                    @endif
+
+                    <td>
+
                     <span> <a href="/edit/{{ $floor-> id }}" class="btn btn-primary">edit </a></span>
-   
-   
+
+
                   <form method="post" class="delete_form d-inline "  action="{{ route('floor.delete', ['id' => $floor->id]) }}">
                   @method('DELETE')
                    @csrf
                   <button type="submit" class="btn btn-danger">Delete</button>
 </form> </td>
-                     
+
                   </tr>
                   @endforeach
                   </tbody>
@@ -86,7 +92,7 @@
                     <th>Browser</th>
                     <th>Platform(s)</th>
                     <th>Engine version</th>
-                  
+
                   </tr>
                   </tfoot>
                 </table>
@@ -95,7 +101,7 @@
             </div>
             <!-- /.card -->
 
-            
+
           </div>
           <!-- /.col -->
         </div>

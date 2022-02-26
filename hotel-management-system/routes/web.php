@@ -132,10 +132,10 @@ Route::get('/dashboard/receptionists/approve',[ReceptionistController::class, 'i
 
 
 
-Route::get('/dashboard/floors/',[FloorController::class, 'index'])->middleware(['receptionist'],['manager'],['admin'])->name('dashboard.floor.index');
-Route::get('/dashboard/floors/create',[FloorController::class, 'create'])->middleware(['receptionist'],['manager'],['admin']);
-Route::post('/dashboard/floors/store',[FloorController::class, 'store'])->middleware(['receptionist'],['manager'],['admin'])->name('dashboard.floor.store');
-Route::delete('/destroy/{id}',[FloorController::class, 'destroy'])->middleware(['receptionist'],['manager'],['admin'])->name('floor.delete');
-Route::get('/edit/{id}',[FloorController::class, 'edit'])->middleware(['receptionist'],['manager'],['admin'])->name('dashboard.floor.edit');
-Route::post('/saveEdit/{id}',[FloorController::class, 'update'])->middleware(['receptionist'],['manager'],['admin'])->name('dashboard.floor.update');
-Route::get('/show/{id}',[FloorController::class, 'show'])->middleware(['receptionist'],['manager'],['admin'])->name('dashboard.floor.show');
+Route::get('/dashboard/floors/',[FloorController::class, 'index'])->name('dashboard.floor.index');
+Route::get('/dashboard/floors/create',[FloorController::class, 'create']);
+Route::post('/dashboard/floors/store',[FloorController::class, 'store'])->name('dashboard.floor.store');
+Route::delete('/destroy/{id}',[FloorController::class, 'destroy'])->name('floor.delete');
+Route::get('/edit/{id}',[FloorController::class, 'edit'])->name('dashboard.floor.edit');
+Route::post('/saveEdit/{id}',[FloorController::class, 'update'])->name('dashboard.floor.update');
+Route::get('/show/{id}',[FloorController::class, 'show'])->name('dashboard.floor.show');
