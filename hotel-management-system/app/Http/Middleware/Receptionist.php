@@ -21,8 +21,8 @@ class Receptionist
 
         if (!Auth::guard('receptionist')->check()) {
             # code...
-//error
-            return redirect()->route('receptionist.login.form')->with('error' , 'pleaxe login first');
+            //error
+            return redirect()->route('receptionist.login.form');
 
         }
         return $next($request);

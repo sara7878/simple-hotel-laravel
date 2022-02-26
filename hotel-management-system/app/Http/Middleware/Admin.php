@@ -19,8 +19,8 @@ class Admin
     {
         if (!Auth::guard('admin')->check()) {
             # code...
-//error
-            return redirect()->route('admin.login.form');
+            //error
+            return redirect()->route('login');
 
         }
         return $next($request);

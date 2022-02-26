@@ -49,17 +49,15 @@ Route::get('/', function () {
 
 // });
 
-Route::prefix('admin')->group(function(){
-//get form
-Route::get('/login',[AdminController::class,'loginForm'])->name('login.form');
-//check
-Route::post('/login/owner', [AdminController::class, 'Login'])->name('admin.login');
-});
+
 
 Route::get('/hotel', function () {
     return view('dashboard.layout.master');
-})->middleware(['auth'])->name('hotel');
+})->middleware(['admin'],['auth'],['manager'])->name('hotel');
 
+// Route::get('/hotel', function () {
+//     return view('dashboard.layout.master');
+// })->middleware(['admin'],['auth'],['manager'])->name('hotel');
 
 
 Route::prefix('receptionist')->group(function(){
@@ -84,7 +82,7 @@ Route::post('/manager/login/owner', [ManagerController::class, 'Login'])->name('
 //manager logout
 // Route::get('manager/logout', [ManagerController::class, 'logout'])->name('manager.logout')->middleware('manager');
 //index managere
-Route::get('/manager', [ManagerController::class, 'index'])->middleware(['admin'])->name('manager.index');
+Route::get('/manager', [ManagerController::class, 'index'])->middleware(['manager'])->name('manager.index');
 //show manager
 //create
 Route::get('manager/create',[ManagerController::class, 'create'])->middleware(['admin'])->name('manager.create');
@@ -106,18 +104,25 @@ Route::delete('manager/delete/{id}',[ManagerController::class, 'destroy'])->midd
 
 
 
+
+Route::prefix('admin')->group(function(){
+    //get form
+    Route::get('/login',[AdminController::class,'loginForm'])->name('login.form');
+    //check
+    Route::post('/login/owner', [AdminController::class, 'Login'])->name('admin.login');
+});
 //index managere
-Route::get('/admin', [AdminController::class, 'index'])->middleware(['auth'])->name('admin.index');
+Route::get('/admin', [AdminController::class, 'index'])->middleware(['admin'])->name('admin.index');
 //show managere
 // Route::get('manager/{id}',[ManagerController::class, 'show'])->name('manager.show');
 //crete
-Route::get('admin/create',[AdminController::class, 'create'])->middleware(['auth'])->name('admin.create');
-Route::post('admin/store',[AdminController::class, 'store'])->middleware(['auth'])->name('admin.store');
+Route::get('admin/create',[AdminController::class, 'create'])->middleware(['manager'])->name('admin.create');
+Route::post('admin/store',[AdminController::class, 'store'])->middleware(['manager'])->name('admin.store');
 //update
-Route::get('admin/edit/{id}',[AdminController::class, 'edit'])->middleware(['auth'])->name('admin.edit');
-Route::post('admin/update/{id}',[AdminController::class, 'update'])->middleware(['auth'])->name('admin.update');
+Route::get('admin/edit/{id}',[AdminController::class, 'edit'])->middleware(['admin'])->name('admin.edit');
+Route::post('admin/update/{id}',[AdminController::class, 'update'])->middleware(['admin'])->name('admin.update');
 //Delete
-Route::delete('admin/delete/{id}',[AdminController::class, 'destroy'])->middleware(['auth'])->name('admin.delete');
+Route::delete('admin/delete/{id}',[AdminController::class, 'destroy'])->middleware(['admin'])->name('admin.delete');
 
 
 require __DIR__.'/auth.php';

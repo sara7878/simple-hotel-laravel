@@ -75,11 +75,14 @@
 
                 </ul>
               </li>
+
+
+              @if(Auth::guard('manager')->check()||Auth::guard('admin')->check())
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-edit"></i>
                   <p>
-                    Rooms
+                    Manage Rooms
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -98,11 +101,10 @@
                     </a>
                   </li>
 
-<<<<<<< HEAD
                 </ul>
               </li>
+              @endif
 
-=======
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -149,7 +151,7 @@
                 </a>
               </li>
 
-          
+          @if(Auth::guard('receptionist')->check())
           </ul>
 
             </li>
@@ -180,11 +182,9 @@
                   <p>My clients reservations</p>
                 </a>
               </li>
->>>>>>> 4c03cbc5fa50666418271dd3cdc3850a4ccab1e7
-
-
 
         </ul>
+        @endif
       </nav>
       <!-- /.sidebar-menu -->
     </div>
