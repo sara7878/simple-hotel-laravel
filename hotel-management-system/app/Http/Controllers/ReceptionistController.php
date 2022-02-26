@@ -12,6 +12,28 @@ use Illuminate\Support\Facades\Auth;
 
 class ReceptionistController extends Controller
 {
+    public function home(){
+        if(Auth::check() && Auth::receptionist()->force_logout)
+        {
+            Auth::receptionist()->force_logout = 0;
+            Auth::receptionist()->save();
+            Auth::logout();
+            return view("welcome");
+        }
+    }
+
+
+
+public function forcelogout(){
+    request()->validate(["id"=>'required|exists:receptionists,id']);
+    receptionist::where("id","=", request()->id)->update(["force_logout"=>1]);
+    return view('receptionistLogin .login'); 
+
+}
+
+
+
+
     public function loginForm()
     {
         return view('receptionistLogin .login');

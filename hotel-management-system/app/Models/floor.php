@@ -17,5 +17,11 @@ class floor extends Model
     public function manager()
     {
         return $this->belongsTo(manager::class);
+
+
+    }
+    public function rooms()
+    {
+        return $this->hasMany(room::class);
     }
 }

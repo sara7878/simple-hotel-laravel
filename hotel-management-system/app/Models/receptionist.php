@@ -28,4 +28,9 @@ class receptionist extends Authenticatable
     protected $hidden = [
         'password',
     ];
+    
+    public function reservations()
+    {
+        return $this->hasMany(reservation::class);
+    }
 }

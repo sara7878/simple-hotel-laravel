@@ -15,12 +15,12 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->integer('acompany_number');
+            $table->integer('accompany_number');
             $table->integer('paid_price');
             $table->integer('room_number');
             $table->foreign('room_number')->references('number')->on('rooms')->onDelete('cascade')->onUpdate('cascade')->primary();
             $table->foreignId('client_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->primary();
-            $table->foreignId('receptionist_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->primary();
+            $table->foreignId('receptionist_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
