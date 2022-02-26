@@ -58,24 +58,7 @@
               @endif
 
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Managers
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                      <a href="{{ route('admin.create') }}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Add Admin</p>
-                      </a>
-                    </li>
-
-                  </ul>
-              </li>
+         
 
               <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -105,13 +88,12 @@
 
 
 
-
-              
+              @if(Auth::guard('manager')->check()||Auth::guard('admin')->check())
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-edit"></i>
                   <p>
-                    Rooms
+                    Manage Rooms
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
@@ -132,10 +114,7 @@
 
                 </ul>
               </li>
-
-            </ul>
-          </li>
-
+              @endif
 
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -204,7 +183,7 @@
                 </a>
               </li>
 
-
+          @if(Auth::guard('receptionist')->check())
           </ul>
 
             </li>
@@ -236,9 +215,8 @@
                 </a>
               </li>
 
-
-
         </ul>
+        @endif
       </nav>
       <!-- /.sidebar-menu -->
     </div>

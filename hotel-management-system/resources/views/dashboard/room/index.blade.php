@@ -50,13 +50,15 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>#</th>
-                    <th>Name</th>
+                    {{-- <th>#</th> --}}
+                    {{-- <th>Name</th> --}}
                     <th>Number</th>
                     <th>Capacity</th>
                     <th>Price</th>
-                    <th>status</th>
+                    {{-- <th>status</th> --}}
+                    @if(Auth::guard('admin')->check())
                     <th>Manager</th>
+                    @endif
                     <th>Floor</th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -66,21 +68,22 @@
 
                     @foreach ($rooms as $room)
                   <tr>
-                    <td>{{ $room->id }}</td>
-                    <td>{{ $room->name }}</td>
+                    {{-- <td>{{ $room->id }}</td> --}}
+                    {{-- <td>{{ $room->name }}</td> --}}
                     <td>{{ $room->number}}</td>
                     <td>{{ $room->capacity }}</td>
                     <td>{{ ($room->price)/100 }} $</td>
-                    <td> 
+                    {{-- <td> 
                       @if($room->status==0)
                         Empty
                       @else
                         Not empty
                       @endif
-                  </td>
+                  </td> --}}
+                  @if(Auth::guard('admin')->check())
                     <td>{{ $room->manager->name??"not found" }}</td>
+                  @endif
                     <td>{{ $room->floor->name??"not found" }}</td>
-
                     <td><a href="{{ route('room.edit',$room->id)}}" class="btn btn-success">Edit</a></td>
                   
                     <td>

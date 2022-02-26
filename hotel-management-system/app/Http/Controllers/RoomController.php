@@ -104,7 +104,7 @@ class RoomController extends Controller
                 //validation
                 $request->validate([
                     'name' =>'required|string|min:3|max:50',
-                    'number'=>'unique:rooms|numeric|min:1000',
+                    'number'=>'numeric|min:1000',
                     'capacity'=>'numeric',
                     'price'=>'required|numeric'
 
