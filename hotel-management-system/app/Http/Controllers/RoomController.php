@@ -16,15 +16,15 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms=room::with('floor')->get();
+        $rooms=room::get();
         return view('dashboard.room.index',['rooms' => $rooms]);
     }
 
-    public function indexAdmin()
-    {
-        $rooms=room::with('floor')->get();
-        return view('dashboard.room.index',['rooms' => $rooms]);
-    }
+    // public function indexAdmin()
+    // {
+    //     $rooms=room::with('floor')->get();
+    //     return view('dashboard.room.index',['rooms' => $rooms]);
+    // }
     /**
      * Show the form for creating a new resource.
      *

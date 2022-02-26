@@ -60,8 +60,10 @@
                     <th>Manager</th>
                     @endif
                     <th>Floor</th>
+                    @if(Auth::guard('manager')->check())
                     <th>Edit</th>
                     <th>Delete</th>
+                    @endif
                   </tr>
                   </thead>
                   <tbody>
@@ -84,15 +86,20 @@
                     <td>{{ $room->manager->name??"not found" }}</td>
                   @endif
                     <td>{{ $room->floor->name??"not found" }}</td>
-                    <td><a href="{{ route('room.edit',$room->id)}}" class="btn btn-success">Edit</a></td>
-                  
-                    <td>
-                    <form action="{{ route('room.delete',$room->id)}}" method="POST">
+
+                    @if(Auth::guard('manager')->check())
+                    @if((Auth::guard('manager')->user()->id)==($room->manager_id))
+                    <td><a href="{{ route('room.edit',$room->id)}}" class="btn btn-success">Edit</a></td>                  
+                   
+                     <td><form action="{{ route('room.delete',$room->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
                         <input class="btn btn-danger" type="submit" value="Delete" />
                      </form>
                     </td>
+                    @endif
+                    @endif
+
                   </tr>
                   @endforeach
 

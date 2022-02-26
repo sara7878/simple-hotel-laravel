@@ -50,6 +50,7 @@
                   </ul>
               </li>
         
+            @if(Auth::guard('admin')->check())
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-edit"></i>
@@ -75,7 +76,7 @@
 
                 </ul>
               </li>
-
+              @endif
 
               @if(Auth::guard('manager')->check()||Auth::guard('admin')->check())
               <li class="nav-item">

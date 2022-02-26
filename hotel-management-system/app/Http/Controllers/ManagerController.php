@@ -18,7 +18,7 @@ class ManagerController extends Controller
     {
         $check = $request->all();
         if (Auth::guard('manager')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
-            return redirect('/manager');
+            return redirect('/hotel');
         } else {
             return back()->with('error', 'invalid email ');;
         }

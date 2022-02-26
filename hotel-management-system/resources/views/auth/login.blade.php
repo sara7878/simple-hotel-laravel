@@ -51,6 +51,10 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
-        </form>
+        </form>   
+         {{-- <x-button href="{{ route('receptionist.login.form') }}" value="login as receptionist"></x-button> --}}
+        <x-button><a href="{{ route('loginManager.form') }}">login as manager</a></x-button>
+        <x-button><a href="{{ route('login.form') }}">login as admin</a></x-button>
+
     </x-auth-card>
 </x-guest-layout>

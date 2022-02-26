@@ -53,7 +53,7 @@ Route::get('/', function () {
 
 Route::get('/hotel', function () {
     return view('dashboard.layout.master');
-})->middleware(['admin'],['auth'],['manager'])->name('hotel');
+})->name('hotel');
 
 // Route::get('/hotel', function () {
 //     return view('dashboard.layout.master');
@@ -68,7 +68,6 @@ Route::prefix('receptionist')->group(function(){
     Route::post('/login/owner', [ReceptionistController::class, 'Login'])->name('receptionist.login');
     // Route::get('/dashboard', [AdminController::class, 'Dashboard'])->name('admin.dashboard');
     
-    
     });
 
 
@@ -82,7 +81,7 @@ Route::post('/manager/login/owner', [ManagerController::class, 'Login'])->name('
 //manager logout
 // Route::get('manager/logout', [ManagerController::class, 'logout'])->name('manager.logout')->middleware('manager');
 //index managere
-Route::get('/manager', [ManagerController::class, 'index'])->middleware(['manager'])->name('manager.index');
+Route::get('/manager', [ManagerController::class, 'index'])->middleware(['admin'])->name('manager.index');
 //show manager
 //create
 Route::get('manager/create',[ManagerController::class, 'create'])->middleware(['admin'])->name('manager.create');
@@ -107,9 +106,9 @@ Route::delete('manager/delete/{id}',[ManagerController::class, 'destroy'])->midd
 
 Route::prefix('admin')->group(function(){
     //get form
-    Route::get('/login',[AdminController::class,'loginForm'])->name('login.form');
+    Route::get('login',[AdminController::class,'loginForm'])->name('login.form');
     //check
-    Route::post('/login/owner', [AdminController::class, 'Login'])->name('admin.login');
+    Route::post('login/owner', [AdminController::class, 'Login'])->name('admin.login');
 });
 //index managere
 Route::get('/admin', [AdminController::class, 'index'])->middleware(['admin'])->name('admin.index');
