@@ -74,11 +74,6 @@
                                     @foreach ($countries as $country)
                                     <option value="{{$country}}">{{$country}}</option>
                                     @endforeach
-                                    <!-- <option value="Egypt">Egypt</option>
-                                    <option value="Greece">Greece</option>
-                                    <option value="Uganda">Uganda</option>
-                                    <option value="America">America</option>
-                                    <option value="Italy">Italy</option> -->
                                 </select>
                             </div>
 
@@ -94,11 +89,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="avatar_img">Image</label>
-                                <input type="file" class="form-control" name="avatar_img" id="avatar_img">
-                                <span class="text-danger">{{$errors->first('avatar_img')}}</span>
-                            </div>
+                                <label for="exampleInputFile">Image</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input class="form-control" type="file" name="avatar_img" class="custom-file-input" id="exampleInputFile">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        <span class="text-danger">{{$errors->first('avatar_img')}}</span>
+                                    </div>
 
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         @endif

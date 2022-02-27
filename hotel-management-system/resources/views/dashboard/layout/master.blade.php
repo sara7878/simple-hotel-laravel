@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-@yield('title')
+  @yield('title')
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -28,20 +29,21 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+  <div class="wrapper">
 
-@include('dashboard.partial.navbar')
-@include('dashboard.partial.sidebar')
+    @include('dashboard.partial.navbar')
+    @include('dashboard.partial.sidebar')
 
-<div class="content-wrapper">
-    @yield('content')
-</div>
+    <div class="content-wrapper">
+      @yield('content')
+    </div>
 
-@include('dashboard.partial.footer')
-@include('dashboard.partial.scripts')
+    @include('dashboard.partial.footer')
+    @include('dashboard.partial.scripts')
 
-@yield('custom-scripts')
+    @yield('custom-scripts')
 
-</div>
+  </div>
 </body>
+
 </html>

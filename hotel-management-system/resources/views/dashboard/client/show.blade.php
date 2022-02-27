@@ -53,7 +53,7 @@
                     <li>
                         {{$client->status}}
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -63,4 +63,3 @@
 <!-- /.content -->
 
 @endsection
-

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\StoreReservationRequest;
 use App\Models\client;
 use App\Models\reservation;
@@ -50,7 +51,7 @@ class ReservationController extends Controller
     public function showUnapproved()
     {
         $reservations = reservation::where('status', 'pending')->get();
-        
+
         return view('dashboard.reservation.manageReservations', ['reservations' => $reservations]);
     }
 
@@ -61,13 +62,13 @@ class ReservationController extends Controller
      */
     public function approve($id)
     {
-        $reservation = reservation::find($id);
+        $reservation = reservation::with('client')->find($id);
         $reservation->status = 'approved';
         $receptionist_id = Auth::guard('receptionist')->user()->id;
-        $reservation->resceptionist_id = $receptionist_id;
+        $reservation->receptionist_id = $receptionist_id;
         $reservation->save();
-        $reservations = client::all();
-        return redirect()->route('reservation.approved',['reservations' => $reservations]);
+        $reservations = reservation::with('client')->all();
+        return redirect()->route('reservation.approved', ['reservations' => $reservations]);
     }
 
     /**
@@ -80,10 +81,10 @@ class ReservationController extends Controller
         $reservation = reservation::find($id);
         $reservation->status = 'rejected';
         $receptionist_id = Auth::guard('receptionist')->user()->id;
-        $reservation->resceptionist_id = $receptionist_id;
+        $reservation->receptionist_id = $receptionist_id;
         $reservation->save();
-        $reservations = client::all();
-        return redirect()->route('reservation.manage',['reservations' => $reservations]);
+        $reservations = reservation::with('client')->all();
+        return redirect()->route('reservation.manage', ['reservations' => $reservations]);
     }
 
     /**
@@ -94,8 +95,11 @@ class ReservationController extends Controller
     public function showApproved()
     {
         $reservations = DB::table('reservations')
-            ->where('status', '=', 'approved')
+            ->join('clients', 'reservations.client_id', '=', 'clients.id')
+            ->where('reservations.status', '=', 'approved')
             ->get();
+        // dd($reservations);
+
         return view('dashboard.reservation.approved', ['reservations' => $reservations]);
     }
 
@@ -108,19 +112,19 @@ class ReservationController extends Controller
     {
         return view('dashboard.reservation.makeReservation', ['roomId' => $roomId]);
     }
-    
+
     public function store(Request $request, $roomId)
     {
         $request->validate([
             'accompany_number' => 'bail|required|integer',
         ]);
 
-            $room = room::find($roomId);
+        $room = room::find($roomId);
 
-            $reservation = new reservation();
-            if ($request->accompany_number <= $room->capacity && $request->accompany_number > 0) {
-                $reservation->accompany_number = $request->accompany_number;
-            
+        $reservation = new reservation();
+        if ($request->accompany_number <= $room->capacity && $request->accompany_number > 0) {
+            $reservation->accompany_number = $request->accompany_number;
+
             $room_number = DB::table('rooms')
                 ->select('number')
                 ->where('id', '=', $roomId)
@@ -138,15 +142,14 @@ class ReservationController extends Controller
 
             $reservation->client_id = $client;
 
-            $room->status = true;
+            $room->status = 'pending';
             $room->save();
 
             $reservation->save();
 
-            return redirect()->route('reservation.index');
+            return redirect()->route('reservation.show');
         }
         return view('dashboard.reservation.makeReservation', ['roomId' => $roomId]);
- 
     }
 
     /**
@@ -155,10 +158,13 @@ class ReservationController extends Controller
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $reservation = reservation::find($id);
-        return view('dashboard.reservation.show', ['reservation' => $reservation]);
+        $client = Auth::guard('receptionist')->user()->id;
+        $reservations = DB::table('reservations')
+            ->select('*')
+            ->get();
+        return view('dashboard.reservation.show', ['reservations' => $reservations]);
     }
 
     /**
@@ -186,10 +192,7 @@ class ReservationController extends Controller
 
         $reservation = reservation::find($id);
         $reservation->accompany_number = $request->accompany_number;
-        // $reservation->paid_price = $request->paid_price;
         $reservation->room_number = $request->room_number;
-        // $reservation->client_id = $request->client_id;
-        // $reservation->receptionist_id = $request->receptionist_id;
 
         $reservation->save();
         return redirect()->route('reservation.index');

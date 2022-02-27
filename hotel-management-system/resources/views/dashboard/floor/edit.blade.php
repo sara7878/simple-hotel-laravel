@@ -45,45 +45,18 @@
                     <!-- /.card-header -->
                     <!-- form start-->
                     <form enctype="multipart/form-data" method="POST" action="{{ route('dashboard.floor.update', ['id' => $floor->id]) }}">
-                    @csrf
+                        @csrf
                         <div class="card-body">
 
-
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="exampleInputName1">Name</label>
-                               
+
                                 <input class="form-control" class="@error('name') is-invalid @enderror" type="text" value="{{$floor->name}}" id="exampleInputName1" name="name" placeholder="Enter name">
                                 @error('name')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
-
-                         
-                            <div class="form-group">
-                                <label for="exampleInputid">Number</label>
-                                <input type="text" class="form-control" class="@error('number') is-invalid @enderror"  value="{{$floor->number}}"   id="exampleInputid" name="number" placeholder="Enter ID">
-                                @error('number')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                            </div>
-
-                            
-                            <div class="form-group">
-                             <label for="manager_id">manager_id</label>
-                             <br>
-                           
-                          <select  class="form-control" class="@error('manager_id') is-invalid @enderror" aria-label="Default select example" id="manager_id" name="manager_id">
-                            <option selected> select managaer</option>
-                                @foreach($manager  as $manager)
-                                <option value="{{$manager -> id}}" >{{ $manager -> name }}</option>
-                                @endforeach
-                               
-                                    </select>
-                                    @error('manager_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                            </div>
                         </div>
                         <!-- /.card-body -->
 

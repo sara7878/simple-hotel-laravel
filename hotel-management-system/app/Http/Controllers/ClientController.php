@@ -23,10 +23,28 @@ class ClientController extends Controller
     {
         $check = $request->all();
         if (Auth::guard('client')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
-            return redirect('/dashboard/clients')->with('error', 'client login sucess');
+            $id = Auth::guard('client')->user()->id;
+            return redirect('/hotel')->with('error', 'client login sucess');
         } else {
             return back()->with('error', 'invalid email ');;
         }
+    }
+
+    public function home()
+    {
+        if (Auth::check() && Auth::client()->force_logout) {
+            Auth::client()->force_logout = 0;
+            Auth::client()->save();
+            Auth::logout();
+            return view("welcome");
+        }
+    }
+
+    public function forcelogout()
+    {
+        request()->validate(["id" => 'required|exists:client,id']);
+        client::where("id", "=", request()->id)->update(["force_logout" => 1]);
+        return view('clientLogin .login');
     }
 
     /**
@@ -36,14 +54,18 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = client::all();
+
+        $clients =  DB::table('clients')
+            ->where('status', '=', 'pending')
+            ->get();
         return view('dashboard.client.index', ['clients' => $clients]);
     }
+
     public function approve()
     {
         $clients =  DB::table('clients')
-        ->where('status', '=', 'approved')
-        ->get();
+            ->where('status', '=', 'approved')
+            ->get();
         return view('dashboard.client.approve', ['clients' => $clients]);
     }
 
@@ -54,28 +76,9 @@ class ClientController extends Controller
      */
     public function showUnapproved()
     {
-        // $clients = client::all();
         $clients = client::where('status', 'pending')->get();
-        // $clients = DB::table('clients')
-        // ->where('status','pending')
-        // ->get();
         return view('dashboard.client.manageClients', ['clients' => $clients]);
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function approve($id)
-    // {
-    //     $client = client::find($id);
-    //     $client->status = 'approved';
-    //     $client->save();
-    //     $clients = client::all();
-    //     return redirect()->route('client.approved',['clients' => $clients]);
-    //     // return view('dashboard.client.approved', ['clients' => $clients]);
-    // }
 
     /**
      * Display a listing of the resource.
@@ -88,22 +91,9 @@ class ClientController extends Controller
         $client->status = 'rejected';
         $client->save();
         $clients = client::all();
-        return redirect()->route('client.manage',['clients' => $clients]);
-        // return view('dashboard.client.manageClients', ['clients' => $clients]);
+        return redirect()->route('client.manage', ['clients' => $clients]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function showApproved()
-    // {
-    //     $clients = DB::table('clients')
-    //         ->where('status', '=', 'approved')
-    //         ->get();
-    //     return view('dashboard.client.approved', ['clients' => $clients]);
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -120,17 +110,6 @@ class ClientController extends Controller
             array_push($countries, $values[0]);
             continue;
         }
-
-        ///Countries in Africa only
-        $whereCountries = CountryLoader::where('geo.continent', ['AF' => 'Africa']);
-
-        // foreach ($whereCountries as $cou) {
-        //     foreach ($cou as $co) {
-        //             $values = array_values($co);
-        //             array_push($countries,$values[0]);
-        //             break;
-        //     }
-        // }
 
         return view('dashboard.client.create', ['countries' => $countries]);
     }
@@ -159,7 +138,6 @@ class ClientController extends Controller
         $img->move(public_path("uploads/clients/"), $image);
 
         $client->avatar_img = $image;
-        // dd($request);
 
         $client->save();
 
@@ -187,11 +165,9 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = client::find($id);
-        $client->status= 'approved';
+        $client->status = 'approved';
         $client->save();
         return redirect()->route('client.index');
-        //  return view('dashboard.client.edit', ['id' => $id, 'client' => $client]);
-
     }
 
     /**
@@ -210,8 +186,6 @@ class ClientController extends Controller
         $client->email = $request->email;
         $client->mobile = $request->mobile;
         $client->password = Hash::make($request->password);
-        // $client->country = $request->country;
-        // $client->gender = $request->gender;
 
         $name = $client->img;
         if ($request->hasFile('img')) {
@@ -219,11 +193,10 @@ class ClientController extends Controller
                 unlink(public_path('uploads/clients/' . $name));
             }
             //move
-            $img = $request->file('img');             //bmsek el soura
-            $ext = $img->getClientOriginalExtension();   //bgeb extention
-            $name = "client-" . uniqid() . ".$ext";            // conncat ext +name elgded
-            $img->move(public_path("uploads/clients"), $name);   //elmkan , $name elgded
-
+            $img = $request->file('img');
+            $ext = $img->getClientOriginalExtension();
+            $name = "client-" . uniqid() . ".$ext";
+            $img->move(public_path("uploads/clients"), $name);
         }
 
         $client->avatar_img = $name;

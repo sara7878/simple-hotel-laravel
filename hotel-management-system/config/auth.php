@@ -41,28 +41,28 @@ return [
             'provider' => 'users',
         ],
 
-         //Admin guards
-         'admin'=>[
-            'driver'=>'session',
-            'provider'=>'admins'
-         ],
+        //Admin guards
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins'
+        ],
 
-            'receptionist'=>[
-                'driver'=>'session',
-                'provider'=>'receptionists'
-            ],
-         'client'=>[
-            'driver'=>'session',
-            'provider'=>'clients'
-         ],
+        'receptionist' => [
+            'driver' => 'session',
+            'provider' => 'receptionists'
+        ],
+        'client' => [
+            'driver' => 'session',
+            'provider' => 'clients'
+        ],
         // 'admin-api' => [
         //     'driver' => 'token',
         //     'provider' => 'admins',
         // ],
-        'manager'=>[
-            'driver'=>'session',
-            'provider'=>'managers'
-            ]
+        'manager' => [
+            'driver' => 'session',
+            'provider' => 'managers'
+        ]
 
     ],
 
@@ -143,7 +143,7 @@ return [
         //     'provider' => 'admins',
         //     'expire' => 60,
         //     'throttle' => 60,
-        
+
         // ],
 
     ],

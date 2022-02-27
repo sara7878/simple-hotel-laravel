@@ -30,8 +30,7 @@ class StoreClientRequest extends FormRequest
             'password' => 'bail|required|min:8',
             'country' => 'bail|required|string|nullable',
             'gender' => 'bail|required',
-            'avatar_img' =>'bail|required|image|mimes:jpeg,png',
-            // 'status' => 'bail'
+            'avatar_img' => 'bail|required|image|mimes:jpeg,png',
         ];
     }
 }

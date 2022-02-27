@@ -14,6 +14,7 @@ class AdminController extends Controller
     {
         return view('adminLogin.login');
     }
+
     public function Login(Request $request)
     {
         $check = $request->all();
@@ -23,20 +24,17 @@ class AdminController extends Controller
             return back()->with('error', 'invalid email ');;
         }
     }
+
     public function index()
     {
         $admins = admin::get();
         return view('dashboard.admin.index', ['admins' => $admins]);
     }
 
-
-
-
     public function create()
     {
         return view('dashboard.admin.create');
     }
-
 
     public function store(Request $request)
     {
@@ -45,14 +43,13 @@ class AdminController extends Controller
             'email' => 'required|email',
             'name' => 'required|string|min:3|max:50',
             'password' => 'required|min:6',
-            'national_id' => 'required|max:50',
+            'national_id' => 'required|max:14',
             'avatar_img' => 'required|image|mimes:jpeg,png',
         ]);
-        //$request->validate();
-        //$request->validated();
-        $img = $request->file('avatar_img');             //bmsek el soura
-        $ext = $img->getClientOriginalExtension();   //bgeb extention
-        $image = "man -" . uniqid() . ".$ext";            // conncat ext +name elgded
+
+        $img = $request->file('avatar_img');
+        $ext = $img->getClientOriginalExtension();
+        $image = "admin -" . uniqid() . ".$ext";
         $img->move(public_path("uploads/admin/"), $image);
         admin::create([
             'name' => $request->name,
@@ -64,7 +61,6 @@ class AdminController extends Controller
 
         return redirect(route('admin.index'));
     }
-
 
     public function show($id)
     {
@@ -78,7 +74,6 @@ class AdminController extends Controller
         return view('dashboard.admin.edit', compact('admin'));
     }
 
-
     public function update(Request $request, $id)
     {
 
@@ -87,47 +82,47 @@ class AdminController extends Controller
             'email' => 'required|email',
             'name' => 'required|string|min:3|max:50',
             'password' => 'required|min:6',
-            'national_id' => 'required|max:50',
             'avatar_img' => 'image|mimes:jpeg,png',
         ]);
-        //$request->validated();
+        
         $admin = admin::findOrFail($id);
         $name = $admin->avatar_img;
         if ($request->hasFile('avatar_img')) {
-            $img = $request->file('avatar_img');             //bmsek el soura
-            $ext = $img->getClientOriginalExtension();   //bgeb extention
-            $name = "man -" . uniqid() . ".$ext";            // conncat ext +name elgded
-            $img->move(public_path("uploads/admin/"), $name);   //elmkan , $name elgded
-
+            if ($name !== null) {
+                unlink(public_path('uploads/admin/' . $name));
+            }
+            $img = $request->file('avatar_img');
+            $ext = $img->getClientOriginalExtension();
+            $name = "admin -" . uniqid() . ".$ext";
+            $img->move(public_path("uploads/admin/"), $name);
         }
 
         $admin->update([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'national_id' => $request->national_id,
+            'national_id' => $admin->national_id,
             'avatar_img' => $name,
         ]);
 
         return redirect(route('admin.index', $id));
     }
 
-
     public function destroy($id)
     {
         $admin = admin::findOrFail($id);
         $admin->delete();
+        $img_name = $admin->img;
+        if ($img_name !== null) {
+            unlink(public_path('uploads/admin/' . $img_name));
+        }
         return redirect(route('admin.index'));
     }
 
-
-
-
-    public function logout(){
+    public function logout()
+    {
         Auth::guard('admin')->logout();
         return redirect()->route('login.form')->with('error', 'Admin Logout
             Successfully');
-     } 
-
-
+    }
 }

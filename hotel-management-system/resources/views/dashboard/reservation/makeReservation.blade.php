@@ -53,11 +53,6 @@
                                 <input type="number" name="accompany_number" class="form-control" id="accompany_number" placeholder="Enter accompany number">
                                 <span class="text-danger">{{$errors->first('accompany_number')}}</span>
                             </div>
-                           
-                            
-                           
-                            
-                           
                         </div>
                         <!-- /.card-body -->
                         @endif

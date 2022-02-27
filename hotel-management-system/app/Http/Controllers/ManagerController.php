@@ -18,22 +18,22 @@ class ManagerController extends Controller
     {
         $check = $request->all();
         if (Auth::guard('manager')->attempt(['email' => $check['email'], 'password' => $check['password']])) {
-            return redirect('/manager');
+            return redirect('/hotel');
         } else {
             return back()->with('error', 'invalid email ');;
         }
     }
 
-    public function logout(){
-        Auth::guard('admin')->logout();
-        return redirect()->route('login.form')->with('error', 'Admin Logout
-            Successfully');
-     }
+    public function logout()
+    {
+        Auth::guard('manager')->logout();
+        return redirect()->route('login.form')->with('error', 'Manager Logout Successfully');
+    }
 
     public function index()
     {
-        $managers=manager::get();
-        return view('dashboard.manager.index',['managers' => $managers]);
+        $managers = manager::get();
+        return view('dashboard.manager.index', ['managers' => $managers]);
     }
 
 
@@ -48,41 +48,40 @@ class ManagerController extends Controller
     {
         //validation
         $request->validate([
-            'email' =>'required|email',
-            'name' =>'required|string|min:3|max:50',
-            'password' =>'required|min:6',
-            'national_id' =>'required|max:50',
-            'avatar_img' =>'required|image|mimes:jpeg,png',
-        ]);
-        //$request->validate();
-        //$request->validated();
-        $img=$request->file('avatar_img');             //bmsek el soura
-        $ext=$img->getClientOriginalExtension();   //bgeb extention
-        $image="man -".uniqid().".$ext";            // conncat ext +name elgded
-        $img->move(public_path("uploads/manager/"),$image);
-        manager::create([
-            'name'=>$request->name ,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'national_id'=>$request->national_id ,
-            'avatar_img'=>$image,
+            'email' => 'required|email',
+            'name' => 'required|string|min:3|max:50',
+            'password' => 'required|min:6',
+            'national_id' => 'required|max:14',
+            'avatar_img' => 'required|image|mimes:jpeg,png',
         ]);
 
-      return redirect(route('manager.index'));
+        $img = $request->file('avatar_img');
+        $ext = $img->getClientOriginalExtension();
+        $image = "man -" . uniqid() . ".$ext";
+        $img->move(public_path("uploads/manager/"), $image);
+
+        manager::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'national_id' => $request->national_id,
+            'avatar_img' => $image,
+        ]);
+
+        return redirect()->route('manager.index');
     }
 
 
     public function show($id)
     {
-        $manager=manager::findOrFail($id);
-        return view('dashboard.manager.show',compact('manager'));
-
+        $manager = manager::findOrFail($id);
+        return view('dashboard.manager.show', compact('manager'));
     }
 
     public function edit($id)
     {
-        $manager=manager::findOrFail($id);
-        return view('dashboard.manager.edit',compact('manager'));
+        $manager = manager::findOrFail($id);
+        return view('dashboard.manager.edit', compact('manager'));
     }
 
 
@@ -91,45 +90,45 @@ class ManagerController extends Controller
 
         //validation
         $request->validate([
-            'email' =>'required|email',
-            'name' =>'required|string|min:3|max:50',
-            'password' =>'required|min:6',
-            'national_id' =>'required|max:50',
-            'avatar_img' =>'image|mimes:jpeg,png',
+            'email' => 'required|email',
+            'name' => 'required|string|min:3|max:50',
+            'password' => 'required|min:6',
+            'avatar_img' => 'image|mimes:jpeg,png',
         ]);
-        //$request->validated();
-        $manager=manager::findOrFail($id);
-        $name=$manager->avatar_img;
-        if ($request->hasFile('avatar_img'))
-        {
-            $img=$request->file('avatar_img');             //bmsek el soura
-            $ext=$img->getClientOriginalExtension();   //bgeb extention
-            $name="man -".uniqid().".$ext";            // conncat ext +name elgded
-            $img->move(public_path("uploads/manager/"),$name);   //elmkan , $name elgded
 
+        $manager = manager::findOrFail($id);
+
+        $name = $manager->avatar_img;
+        if ($request->hasFile('avatar_img')) {
+            if ($name !== null) {
+                unlink(public_path('uploads/manager/' . $name));
+            }
+            $img = $request->file('avatar_img');
+            $ext = $img->getClientOriginalExtension();
+            $name = "man -" . uniqid() . ".$ext";
+            $img->move(public_path("uploads/manager/"), $name);
         }
 
         $manager->update([
-            'name'=>$request->name ,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'national_id'=>$request->national_id ,
-            'avatar_img'=>$name,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'national_id' => $manager->national_id,
+            'avatar_img' => $name,
         ]);
 
-        return redirect(route('manager.index',$id));
+        return redirect()->route('manager.index', $id);
     }
 
 
     public function destroy($id)
     {
-        $manager=manager::findOrFail($id);
+        $manager = manager::findOrFail($id);
         $manager->delete();
-        return redirect(route('manager.index'));
+        $img_name = $manager->img;
+        if ($img_name !== null) {
+            unlink(public_path('uploads/manager/' . $img_name));
+        }
+        return redirect()->route('manager.index');
     }
-
-
-
-
-
 }

@@ -9,18 +9,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class client extends Authenticatable
 {
-    use HasFactory,Notifiable;
+    use HasFactory, Notifiable;
 
     protected $table = 'clients';
 
-    protected $fillable = ['name','email','mobile','password','country','gender','status'];
+    protected $fillable = ['name', 'email', 'mobile', 'password', 'country', 'gender', 'status'];
 
     protected $hidden = [
         'password',
     ];
 
     /**
-     * Get the reservations of the floor.
+     * Get the reservations of the client.
      */
     public function reservations()
     {

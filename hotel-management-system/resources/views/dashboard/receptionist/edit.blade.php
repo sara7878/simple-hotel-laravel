@@ -44,72 +44,52 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start-->
-                    <form enctype="multipart/form-data" method="POST"  action="{{ route('dashboard.receptionist.update', ['id' => $receptionist->id]) }}">
-                    @csrf
+                    <form enctype="multipart/form-data" method="POST" action="{{ route('dashboard.receptionist.update', ['id' => $receptionist->id]) }}">
+                        @csrf
                         <div class="card-body">
 
 
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="exampleInputName1">Name</label>
-                               
-                                <input class="form-control" class="@error('name') is-invalid @enderror" type="text" value="{{ $receptionist-> name }}"  id="exampleInputName1" name="name" placeholder="Enter name">
+
+                                <input class="form-control" class="@error('name') is-invalid @enderror" type="text" value="{{ $receptionist-> name }}" id="exampleInputName1" name="name" placeholder="Enter name">
                                 @error('name')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email"  class="form-control" class="@error('email') is-invalid @enderror"  id="exampleInputEmail1" value="{{ $receptionist-> email}}"  name="email" placeholder="Enter email">
+                                <input type="email" class="form-control" class="@error('email') is-invalid @enderror" id="exampleInputEmail1" value="{{ $receptionist-> email}}" name="email" placeholder="Enter email">
                                 @error('email')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputid">National ID</label>
-                                <input type="text" class="form-control" class="@error('national_id') is-invalid @enderror"  id="exampleInputid" name="national_id"value="{{ $receptionist-> national_id }}"  placeholder="Enter ID">
-                                @error('national_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                              
-                                <input type="password"  class="form-control" class="@error('password') is-invalid @enderror" name="password" id="exampleInputPassword1" placeholder="Password">
+
+                                <input type="password" class="form-control" class="@error('password') is-invalid @enderror" name="password" id="exampleInputPassword1" placeholder="Password">
                                 @error('password')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="form-group">
-                                <label for="exampleInputFile">File input</label>
+                                <label for="exampleInputFile">Image</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input  class="form-control" class="@error('avatar_img') is-invalid @enderror" type="file" name="avatar_img"  class="custom-file-input" id="exampleInputFile">
+                                        <input class="form-control" class="@error('avatar_img') is-invalid @enderror" type="file" name="avatar_img" class="custom-file-input" id="exampleInputFile">
                                         @error('avatar_img')
                                         <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
+                                        @enderror
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
-                                    
+
                                 </div>
                             </div>
-                            <div class="form-group">
-                             <label for="manager_id">manager_id</label>
-                             <br>
-                           
-                          <select  class="form-control" class="@error('manager_id') is-invalid @enderror"  aria-label="Default select example" id="manager_id" name="manager_id">
-                            <option selected> select manager</option>
-                                @foreach($manager as $manager)
-                                <option value="{{$manager -> id}}" >{{ $manager -> name }}</option>
-                                @endforeach
-                               
-                                    </select>
-                                    @error('manager_id')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                            </div>
+
                         </div>
                         <!-- /.card-body -->
 

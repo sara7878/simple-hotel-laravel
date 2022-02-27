@@ -9,27 +9,24 @@ use Illuminate\Notifications\Notifiable;
 
 class manager extends Authenticatable
 {
-    use HasFactory , HasFactory,Notifiable;
-    
+    use HasFactory, Notifiable;
+
     protected $table = 'managers';
-    protected $fillable=[
-        'email' , 'name' , 'password' ,'national_id', 'avatar_img',
+    protected $fillable = [
+        'email', 'name', 'password', 'national_id', 'avatar_img',
     ];
     public function receptionists()
     {
         return $this->hasMany(receptionist::class);
     }
+
     public function floors()
     {
         return $this->hasMany(floor::class);
     }
 
-   
-
     protected $hidden = [
         'password',
     ];
-
-
-
+    
 }

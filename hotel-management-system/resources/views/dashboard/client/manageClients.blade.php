@@ -66,7 +66,7 @@
                                     <td><img src='{{ asset("uploads/clients/$client->avatar_img") }}' width="50" height="50" alt=""></td>
                                     <td>{{$client->status}}</td>
                                     <td>
-                                        
+
                                         <form method="post" action="{{ route('client.approve',['id' => $client->id])}}" class="d-inline">
                                             @csrf
                                             <button class="btn btn-none btn-success" type="submit">Approve</button>
@@ -75,7 +75,7 @@
                                             @csrf
                                             <button class="btn btn-none btn-danger" type="submit">Reject</button>
                                         </form>
-                                        
+
                                     </td>
                                 </tr>
                                 @endforeach

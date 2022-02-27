@@ -62,7 +62,7 @@
                                     <td>{{$reservation->accompany_number}}</td>
                                     <td>{{$reservation->paid_price}}</td>
                                     <td>{{$reservation->room_number}}</td>
-                                    
+
                                     <td>
                                         <form method="post" action="{{ route('reservation.edit',['id' => $reservation->id])}}" class="d-inline">
                                             @csrf

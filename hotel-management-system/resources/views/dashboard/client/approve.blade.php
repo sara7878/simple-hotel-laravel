@@ -73,9 +73,6 @@
                                     <td>{{$client->status}}</td>
                                     <td>
                                         <a href="{{route('client.show',['id'=> $client->id])}}"><i class="fas fa-eye text-primary mx-2"></i></a>
-
-                                        
-                                       
                                     </td>
                                 </tr>
                                 @endforeach

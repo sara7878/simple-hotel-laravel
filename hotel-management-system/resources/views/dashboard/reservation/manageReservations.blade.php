@@ -64,7 +64,7 @@
                                     <td>{{$reservation->paid_price}}</td>
                                     <td>{{$reservation->room_number}}</td>
                                     <td>
-                                    <form method="post" action="{{ route('reservation.approve',['id' => $reservation->id])}}" class="d-inline">
+                                        <form method="post" action="{{ route('reservation.approve',['id' => $reservation->id])}}" class="d-inline">
                                             @csrf
                                             <button class="btn btn-none btn-success" type="submit">Approve</button>
                                         </form>
@@ -78,7 +78,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                <th>Client Name</th>
+                                    <th>Client Name</th>
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>

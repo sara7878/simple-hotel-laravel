@@ -26,13 +26,13 @@
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
+        @if(Auth::guard('admin')->check())
 
         <li class="nav-item">
-          @if(Auth::guard('admin')->check())
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
             <p>
-              Admins
+              Manage Admins
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -42,6 +42,7 @@
                 <i class="far fa-circle nav-icon"></i>
                 <p>List Admin</p>
               </a>
+            </li>
             <li class="nav-item">
               <a href="{{ route('admin.create') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -56,7 +57,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
             <p>
-              Managers
+              Manage Managers
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -77,124 +78,17 @@
 
           </ul>
         </li>
-        @endif
 
-        @if(Auth::guard('receptionist')->check())
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>
-              Clients
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/dashboard/clients" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>List Clients</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('client.create')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Client --- not right</p>
-              </a>
-            </li>
-            <li class="nav-item">
-
-              <a href="{{route('client.approve')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Approved clients</p>
-              </a>
-            </li>
-
-          </ul>
-        </li>
-
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>
-              Reservations
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/dashboard/reservations" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>List Reservations</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('reservation.create')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Reservation</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('reservation.clientReservations')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Client Reservations</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('reservation.showReservations')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>List Reservations for Admin</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('reservation.manage')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Reservations</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('reservation.approved')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Approved Reservations</p>
-              </a>
-            </li>
-
-          </ul>
-        </li>
         @endif
 
 
-
-
+        @if(Auth::guard('manager')->check()||Auth::guard('admin')->check())
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
             <p>
-              Floors
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="/dashboard/floors/" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>List Floors</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/dashboard/floors/create" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Floor</p>
-              </a>
-            </li>
+              Manage Receptionists
 
-          </ul>
-        </li>
-
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>
-              Receptionists
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
@@ -214,17 +108,42 @@
           </ul>
         </li>
 
-
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
             <p>
-              Rooms
+              Manage Floors
+
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
+              <a href="/dashboard/floors/" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>List Floors</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/dashboard/floors/create" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Add Floor</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Manage Rooms
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+
               <a href="{{ route('room.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>List Rooms</p>
@@ -236,18 +155,118 @@
                 <p>Add Room</p>
               </a>
             </li>
+
+          </ul>
+        </li>
+
+
+        @endif
+
+
+        @if(Auth::guard('manager')->check()||Auth::guard('admin')->check() || Auth::guard('receptionist')->check())
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Manage Clients
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('client.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>clients to approve</p>
+              </a>
+            </li>
+            <li class="nav-item">
+
+              <a href="{{route('client.approve')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Approved clients</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Reservations
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('reservation.showReservations')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>List Reservations</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('reservation.manage')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Reservations</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('reservation.approved')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Approved Reservations</p>
+              </a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        @endif
+
+
+
+
+        @if(Auth::guard('client')->check())
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Available Rooms
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="{{ route('room.showAvail') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Show Available Rooms</p>
               </a>
             </li>
-
           </ul>
         </li>
 
-
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              My Reservations
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('reservation.show') }}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Show My Reservations</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        @endif
       </ul>
+      </li>
+
 
 
     </nav>

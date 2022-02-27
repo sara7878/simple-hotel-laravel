@@ -56,26 +56,26 @@
                             <div class="form-group">
                                 <label for="paid_price">Paid Price</label>
                                 <input type="number" name="paid_price" class="form-control" value="{{$reservation->paid_price}}" id="paid_price" placeholder="Enter paid price">
-                            <span class="text-danger">{{$errors->first('paid_price')}}</span>
+                                <span class="text-danger">{{$errors->first('paid_price')}}</span>
                             </div>
                             <div class="form-group">
                                 <label for="room_number">Room Number</label>
                                 <input type="number" name="room_number" class="form-control" value="{{$reservation->room_number}}" id="room_number" placeholder="Enter room number">
-                            <span class="text-danger">{{$errors->first('room_number')}}</span>
+                                <span class="text-danger">{{$errors->first('room_number')}}</span>
                             </div>
                             <div class="form-group">
                                 <label for="client_id">client id</label>
                                 <input type="number" name="client_id" class="form-control" value="{{$reservation->client_id}}" id="client_id" placeholder="client id">
-                            <span class="text-danger">{{$errors->first('client_id')}}</span>
+                                <span class="text-danger">{{$errors->first('client_id')}}</span>
                             </div>
                             <div class="form-group">
                                 <label for="receptionist_id">receptionist_id</label>
                                 <input type="number" name="receptionist_id" class="form-control" value="{{$reservation->receptionist_id}}" id="receptionist_id" placeholder="recepionist id">
-                            <span class="text-danger">{{$errors->first('receptionist_id')}}</span>
+                                <span class="text-danger">{{$errors->first('receptionist_id')}}</span>
                             </div>
-                           
-                            
-                           
+
+
+
                         </div>
                         <!-- /.card-body -->
                         @endif

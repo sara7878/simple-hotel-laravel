@@ -62,7 +62,7 @@
                                     <td>{{$reservation->paid_price}}</td>
                                     <td>{{$reservation->room_number}}</td>
                                     <td>
-                                        
+
                                         <form method="post" action="{{ route('reservation.delete',['id' => $reservation->id])}}" class="d-inline">
                                             @csrf
                                             @method('delete')

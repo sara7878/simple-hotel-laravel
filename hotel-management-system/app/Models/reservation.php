@@ -9,7 +9,7 @@ class reservation extends Model
 {
     use HasFactory;
 
-//     protected $fillable=['accompany_number','paid_price','room_number','client_id','receptionist_id'];
+    protected $fillable = ['accompany_number', 'paid_price', 'room_number', 'client_id', 'receptionist_id'];
 
     /**
      * Get the receptionist that manages the reservation.

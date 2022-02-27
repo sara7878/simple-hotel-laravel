@@ -56,20 +56,20 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail">Email address</label>
                                 <input type="email" name="email" class="form-control" id="exampleInputEmail" value="{{$client->email}}" placeholder="Enter email">
-                            <span class="text-danger">{{$errors->first('email')}}</span>
+                                <span class="text-danger">{{$errors->first('email')}}</span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputMobile">Mobile Number</label>
                                 <input type="number" name="mobile" class="form-control" id="exampleInputMobile" value="{{$client->mobile}}" placeholder="Enter mobile number">
-                            <span class="text-danger">{{$errors->first('mobile')}}</span>
+                                <span class="text-danger">{{$errors->first('mobile')}}</span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword">Password</label>
                                 <input type="password" name="password" class="form-control" id="exampleInputPassword" placeholder="Password">
-                            <span class="text-danger">{{$errors->first('password')}}</span>
+                                <span class="text-danger">{{$errors->first('password')}}</span>
                             </div>
-                            
-                           
+
+
                         </div>
                         <!-- /.card-body -->
                         @endif

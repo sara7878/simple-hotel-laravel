@@ -59,7 +59,7 @@
                             <tbody>
                                 @foreach ($reservations as $reservation)
                                 <tr>
-                                    <td>{{$reservation->client->name}}</td>
+                                    <td>{{$reservation->name}}</td>
                                     <td>{{$reservation->accompany_number}}</td>
                                     <td>{{$reservation->paid_price}}</td>
                                     <td>{{$reservation->room_number}}</td>
@@ -69,7 +69,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                <th>Client Name</th>
+                                    <th>Client Name</th>
                                     <th>Accompany Number</th>
                                     <th>Paid Price</th>
                                     <th>Room Number</th>
