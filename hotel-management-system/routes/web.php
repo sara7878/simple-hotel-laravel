@@ -115,8 +115,8 @@ Route::get('/admin', [AdminController::class, 'index'])->middleware(['admin'])->
 //show managere
 // Route::get('manager/{id}',[ManagerController::class, 'show'])->name('manager.show');
 //crete
-Route::get('admin/create',[AdminController::class, 'create'])->middleware(['manager'])->name('admin.create');
-Route::post('admin/store',[AdminController::class, 'store'])->middleware(['manager'])->name('admin.store');
+Route::get('admin/create',[AdminController::class, 'create'])->middleware(['admin'])->name('admin.create');
+Route::post('admin/store',[AdminController::class, 'store'])->middleware(['admin'])->name('admin.store');
 //update
 Route::get('admin/edit/{id}',[AdminController::class, 'edit'])->middleware(['admin'])->name('admin.edit');
 Route::post('admin/update/{id}',[AdminController::class, 'update'])->middleware(['admin'])->name('admin.update');
