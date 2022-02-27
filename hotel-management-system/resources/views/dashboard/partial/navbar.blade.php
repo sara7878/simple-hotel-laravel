@@ -133,7 +133,7 @@
        </a>
      </li>
 
-     <form method="POST" action="{{ url('/force-logout') }}">
+     <form method="POST" action="{{ url('/logout') }}">
        @csrf
        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                             this.closest('form').submit();">

@@ -119,10 +119,15 @@ class AdminController extends Controller
         return redirect(route('admin.index'));
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+
         Auth::guard('admin')->logout();
-        return redirect()->route('login.form')->with('error', 'Admin Logout
-            Successfully');
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

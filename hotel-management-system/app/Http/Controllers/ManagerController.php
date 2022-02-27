@@ -24,10 +24,17 @@ class ManagerController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+
         Auth::guard('manager')->logout();
-        return redirect()->route('login.form')->with('error', 'Manager Logout Successfully');
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+   
     }
 
     public function index()

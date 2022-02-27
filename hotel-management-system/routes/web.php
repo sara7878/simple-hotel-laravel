@@ -28,7 +28,9 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('admin');
+Route::post('logout', [AdminController::class, 'logout'])
+        ->name('logout');
+// Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout')->middleware('admin');
 
 Route::get('/hotel', function () {
     return view('dashboard.layout.master');
@@ -49,6 +51,8 @@ Route::prefix('client')->group(function () {
     Route::post('/login/owner', [ClientController::class, 'Login'])->name('client.login');
 });
 
+Route::post('logout', [ClientController::class, 'logout'])
+        ->name('logout');
 
 Route::prefix('receptionist')->group(function () {
 
@@ -75,16 +79,12 @@ Route::delete('admin/delete/{id}', [AdminController::class, 'destroy'])->middlew
 // Client
 
 Route::get('/dashboard/clients/manage', [ClientController::class, 'showUnapproved'])->middleware(['client'])->name('client.manage');
-// Route::post('/dashboard/clients/approve/{id}', [ClientController::class, 'approve'])->middleware(['client'])->name('client.approve');
 Route::post('/dashboard/clients/reject/{id}', [ClientController::class, 'reject'])->middleware(['client'])->name('client.reject');
-// Route::get('/dashboard/clients/approved', [ClientController::class, 'showApproved'])->middleware(['client'])->name('client.approved');
 
 
 Route::get('/dashboard/clients', [ClientController::class, 'index'])->name('client.index');
 Route::get('/dashboard/clients/approve', [ClientController::class, 'approve'])->name('client.approve');
 
-Route::post('/dashboard/clients/store', [ClientController::class, 'store'])->middleware(['client'])->name('client.store');
-Route::get('/dashboard/clients/create', [ClientController::class, 'create'])->middleware(['client'])->name('client.create');
 Route::post('/dashboard/clients/edit/{id}', [ClientController::class, 'edit'])->middleware(['client'])->name('client.edit');
 Route::get('/dashboard/clients/update/{id}', [ClientController::class, 'update'])->middleware(['client'])->name('client.update');
 Route::delete('/dashboard/clients/delete/{id}', [ClientController::class, 'destroy'])->middleware(['client'])->name('client.delete');
@@ -112,7 +112,7 @@ Route::get('/dashboard/reservations/create', [ReservationController::class, 'cre
 Route::post('/dashboard/reservations/edit/{id}', [ReservationController::class, 'edit'])->name('reservation.edit');
 Route::post('/dashboard/reservations/update/{id}', [ReservationController::class, 'update'])->name('reservation.update');
 Route::delete('/dashboard/reservations/delete/{id}', [ReservationController::class, 'destroy'])->name('reservation.delete');
-Route::get('/dashboard/reservations/{id}', [ReservationController::class, 'show'])->name('reservation.show');
+Route::get('/dashboard/reservations', [ReservationController::class, 'show'])->name('reservation.show');
 
 // ===============================================================================================
 Route::get('/manager', [ManagerController::class, 'index'])->middleware( [ 'admin'])->name('manager.index');

@@ -40,6 +40,16 @@ class ClientController extends Controller
         }
     }
 
+    public function logout(Request $request){
+        Auth::guard('client')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+
     public function forcelogout()
     {
         request()->validate(["id" => 'required|exists:client,id']);

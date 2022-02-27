@@ -176,7 +176,7 @@
             <li class="nav-item">
               <a href="{{route('client.index')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>clients to approve</p>
+                <p>Clients to Approve</p>
               </a>
             </li>
             <li class="nav-item">

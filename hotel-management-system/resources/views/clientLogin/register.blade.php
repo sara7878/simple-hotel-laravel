@@ -9,14 +9,14 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('client.register') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Name')" />
-
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+
             </div>
 
             <!-- Email Address -->
@@ -30,40 +30,55 @@
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
             </div>
-{{-- 
+
             <div class="mt-4">
-                <x-label for="national_id" :value="__('national_id')" />
+                <x-label for="mobile" :value="__('Mobile')" />
+
+                <x-input id="mobile" class="block mt-1 w-full" type="number" name="mobile" :value="old('mobile')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="national_id" :value="__('National Id')" />
 
                 <x-input id="national_id" class="block mt-1 w-full" type="number" name="national_id" :value="old('national_id')" required />
-            </div> --}}
-{{--
+            </div>
+
             <div class="mt-4">
-                <x-label for="avatar_img" :value="__('avatar_img')" />
-                <div class="form-group">
-                    <label for="exampleInputFile">Image</label>
-                    <input type="file" class="form-control" name="avatar_img"
-                        class="@error('avatar_img') is-invalid @enderror" id="exampleInputPassword1">
-                        @error('avatar_img')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                <x-label>Country</x-label>
+                <select class="form-control" name="country">
+                    @foreach ($countries as $country)
+                    <option value="{{$country}}">{{$country}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mt-4">
+                <x-label>Gender</x-label>
+                <input class="form-check-input ml-2" type="radio" name="gender" id="male" value="male" checked>
+                <x-label class="form-check-label" style="display: inline-block;" for="male">Male</x-label>
+                <input class="form-check-input ml-2" type="radio" name="gender" id="female" value="female">
+                <x-label class="form-check-label d-inline" style="display: inline-block;" for="female"> Female </x-label>
+            </div>
+            
+            <div class="mt-4">
+                <x-label for="exampleInputFile" :value="__('Avatar Image')">Image</x-label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input class="form-control" type="file" name="avatar_img" :value="__('avatar_img')" class="custom-file-input" id="exampleInputFile">
+                    </div>
+
                 </div>
-
-            </div> --}}
-
+            </div>
+            
 
 
 
@@ -74,9 +89,9 @@
 
 
 
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
+            <x-button class="ml-4">
+                {{ __('Register') }}
+            </x-button>
             </div>
         </form>
     </x-auth-card>

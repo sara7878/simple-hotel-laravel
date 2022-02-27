@@ -29,6 +29,19 @@ class ReceptionistController extends Controller
         return view('receptionistLogin .login');
     }
 
+    public function logout(Request $request)
+    {
+
+        Auth::guard('receptionist')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+   
+    }
+
     public function loginForm()
     {
         return view('receptionistLogin .login');
